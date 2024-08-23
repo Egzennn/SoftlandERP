@@ -1,0 +1,40 @@
+﻿@model IEnumerable<FormsModel>
+
+@{
+    var forms = Model.GroupBy(x => x.Category);
+}
+
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="modal-title">@ViewBag.ModalTitle</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+<div class="modal-body">
+    <blockquote class="danger">
+        <div class="form-group">
+            <p style="color: #fff;">@ViewBag.ModalText</p>
+        </div>
+        <div id="formsTree" style="color: #ffffff;">
+            <ul>
+                @foreach (var form in forms)
+                {
+                    <li class="folder" data-jstree='{ "opened" : true }'>
+                        @form.Key
+                        <ul>
+                            @foreach (var item in form)
+                            {
+                                <li data-jstree='{ "icon" : "fa-regular fa-file-word" }'>
+                                    <a href="@item.Path" download="">@item.Name</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+
+                }
+            </ul>
+        </div>
+    </blockquote>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+</div>

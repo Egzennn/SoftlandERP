@@ -1,0 +1,129 @@
+﻿@model IEnumerable<SpedycjaKonfekcjaForm>
+
+<div class="row">
+    <form method="post" action="/Forms/SpedycjaKonfekcjaForm/AktualizujStan">
+        <table class="table-responsive table-bordered table-striped mb-0" id="datatable">
+            <thead>
+                <tr role="row">
+                    <th class="center"></th>
+                    <th class="center">@Html.DisplayNameFor(model => model.AkronimLog)</th>
+                    <th class="center">@Html.DisplayNameFor(model => model.Sekcja)</th>
+                    <th class="center">@Html.DisplayNameFor(model => model.Towar)</th>
+                    <th class="center">@Html.DisplayNameFor(model => model.IloscZlecenia)</th>
+                    <th class="center">@Html.DisplayNameFor(model => model.AkronimWyk)</th>
+                    <th class="center">@Html.DisplayNameFor(model => model.Czas)</th>
+                    <th class="center">@Html.DisplayNameFor(model => model.Created)</th>
+                    <th class="center">@Html.DisplayNameFor(model => model.CreatedBy)</th>
+                    <th hidden class="center">@Html.DisplayNameFor(model => model.Updated)</th>
+                    <th hidden class="center">@Html.DisplayNameFor(model => model.UpdatedBy)</th>
+                    <th class="center">@Html.DisplayNameFor(model => model.Stan)</th>
+                    <th hidden class="center">@Html.DisplayNameFor(model => model.Status)</th>
+                    <th class="center">Akcja</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var form in Model)
+                {
+                    <tr>
+                        <td class="center"><input type="checkbox" name="selectedIds" value="@form.Id" /></td>
+                        <td class="center">@Html.DisplayFor(u => form.AkronimLog)</td>
+                        <td class="center">@Html.DisplayFor(u => form.Sekcja)</td>
+                        <td class="center">@Html.DisplayFor(u => form.Towar)</td>
+                        <td class="center">@Html.DisplayFor(u => form.IloscZlecenia)</td>
+                        <td class="center">@Html.DisplayFor(u => form.AkronimWyk)</td>
+                        <td class="center">@Html.DisplayFor(u => form.Czas)</td>
+                        <td class="center">@Html.DisplayFor(u => form.Created)</td>
+                        <td class="center">@Html.DisplayFor(u => form.CreatedBy)</td>
+                        <td hidden class="center">@Html.DisplayFor(u => form.Updated)</td>
+                        <td hidden class="center">@Html.DisplayFor(u => form.UpdatedBy)</td>
+                        <td class="center">
+                            @switch (form.Stan)
+                            {
+                                case "Aktywny":
+                                    <span class="badge badge-success">@Html.DisplayFor(u => form.Stan)</span>
+                                    break;
+                                case "Realizacja":
+                                    <span class="badge badge-warning">@Html.DisplayFor(u => form.Stan)</span>
+                                    break;
+                                case "Przekazany":
+                                    <span class="badge badge-default">@Html.DisplayFor(u => form.Stan)</span>
+                                    break;
+                                case "Plan":
+                                    <span class="badge badge-info">@Html.DisplayFor(u => form.Stan)</span>
+                                    break;
+                                default:
+                                    <span class="badge badge-danger">@Html.DisplayFor(u => form.Stan)</span>
+                                    break;
+                            }
+                        </td>
+                        <td hidden class="center">
+                            @switch (form.Status)
+                            {
+                                case "Akceptacja":
+                                    <span class="badge badge-success">@Html.DisplayFor(u => form.Status)</span>
+                                    break;
+                                case "Plan":
+                                    <span class="badge badge-info">@Html.DisplayFor(u => form.Status)</span>
+                                    break;
+                                default:
+                                    <span class="badge badge-danger">@Html.DisplayFor(u => form.Status)</span>
+                                    break;
+                            }
+                        </td>
+                        <td>
+                            <div class="btn-group btn-sm">
+                                @if (ViewBag.IsIT)
+                                {
+                                    <a type="button" class="btn btn-xs btn-outline-danger" id="modify-button" asp-area="Forms" asp-controller="SpedycjaKonfekcjaForm" asp-action="Create" asp-route-id="@form.Id"><i class="fas fa-pencil-alt"></i></a>
+                                    <button type="button" class="btn btn-xs btn-outline-danger" id="delete-button" data-id="@form.Id"><i class="fa-regular fa-trash-can"></i></button>
+                                }
+                                else
+                                {
+                                    @if (form.Stan != "Archiwalny")
+                                    {
+                                        <a type="button" class="btn btn-xs btn-outline-danger" id="modify-button" asp-area="Forms" asp-controller="SpedycjaKonfekcjaForm" asp-action="Create" asp-route-id="@form.Id"><i class="fas fa-pencil-alt"></i></a>
+                                    }
+                                    else
+                                    {
+                                        <a disabled type="button" class="btn btn-xs btn-outline-danger" id="modify-button" asp-area="Forms" asp-controller="SpedycjaKonfekcjaForm" asp-action="Create" asp-route-id="@form.Id"><i class="fas fa-pencil-alt"></i></a>
+                                    }
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <div class="btn-group flex-wrap">
+            <table class="table table-bordered table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th colspan="2">Aktualizacja Stanów wybranych rekordów</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DropDownList("StanSelectList", ViewBag.Stany as SelectList, new { @class = "form-control" })
+                        </td>
+                        <td class="text-center">
+                            <button type="submit" class="btn btn-outline-danger">Aktualizuj</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+
+<div class="modal fade" id="modal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content" id="modal-content">
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Forms/Spedycja/spedycjakonfekcjaform.index.js"></script>
+}

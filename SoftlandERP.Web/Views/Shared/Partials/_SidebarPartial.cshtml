@@ -1,0 +1,626 @@
+﻿<aside id="sidebar-left" class="sidebar-left">
+    <div class="sidebar-header">
+        <div class="sidebar-title">Softland ERP v.@System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString()</div>
+        <div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+
+    <div class="nano">
+        <div class="nano-content">
+            <nav id="menu" class="nav-main" role="navigation">
+                <ul class="nav nav-main">
+                    <li class="@Html.IsActive("Home", "Index")">
+                        <a class="nav-link" href="/Home/Index">
+                            <i class="bx bx-home-alt" aria-hidden="true"></i>
+                            <span>Strona główna</span>
+                        </a>
+                    </li>
+                    @*                     <li class="@Html.IsActive("LogViewer", "Index")">
+                    <a class="nav-link" href="/LogViewer/Index">
+                    <i class="bx bx-home-alt" aria-hidden="true"></i>
+                    <span>Logi</span>
+                    </a>
+                    </li>
+                    *@
+                    <li class="nav-parent @Html.IsActiveParentArea("Administration")">
+                        <a class="nav-link" href="#">
+                            <i class="fa-solid fa-toolbox" aria-hidden="true"></i>
+                            <span>Administracja</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li class="nav-parent
+                            @Html.IsActiveParentController("ADUserAddress") @Html.IsActiveParentController("ADDownloadableForm")
+                            @Html.IsActiveParentController("GeneralHelperText")
+                            @Html.IsActiveParentController("FormsDokumentyKosztObslugi")@Html.IsActiveParentController("FormsDokumentyRodzajKosztu")
+                            @Html.IsActiveParentController("FormsHandelRynek") @Html.IsActiveParentController("FormsHandelGrupa")
+                            @Html.IsActiveParentController("FormsOgolneCelKontaktu") @Html.IsActiveParentController("FormsOgolneKategoriaPracy")  @Html.IsActiveParentController("FormsOgolneObszar") @Html.IsActiveParentController("FormsOgolnePriorytet") @Html.IsActiveParentController("FormsOgolneRecepturyNormWykonawczych") @Html.IsActiveParentController("FormsOgolneRodzajPracy") @Html.IsActiveParentController("FormsOgolneRola") @Html.IsActiveParentController("FormsOgolneStan") @Html.IsActiveParentController("FormsOgolneStatus")
+                            @Html.IsActiveParentController("FormsSpedycjaCzynnosci") @Html.IsActiveParentController("FormsSpedycjaCzynnosciMagazynowoSpedycyjneLog") @Html.IsActiveParentController("FormsSpedycjaCzynnosciMagazynowoSpedycyjneMag") @Html.IsActiveParentController("FormsSpedycjaStandardyPrzygotowania") @Html.IsActiveParentController("FormsSpedycjaSekcjeTowarow")
+                            @Html.IsActiveParentController("FormsStanowiskoGrupaOprogramowania") @Html.IsActiveParentController("FormsStanowiskoGrupaNazwaOprogramowania") @Html.IsActiveParentController("FormsStanowiskoObiekt") @Html.IsActiveParentController("FormsStanowiskoNazwaOdpowiedzialnosci") @Html.IsActiveParentController("FormsStanowiskoRodzajePrzesylek") @Html.IsActiveParentController("FormsStanowiskoRodzajeWyp") @Html.IsActiveParentController("FormsStanowiskoZdarzenie")
+                            @Html.IsActiveParentController("ViewsKontrahentAkronimKontrahenta") @Html.IsActiveParentController("ViewsMagazynKodMagazynu") @Html.IsActiveParentController("ViewsMagazynPoziomyCen") @Html.IsActiveParentController("ViewsOrganizacjaLokalizacje") @Html.IsActiveParentController("ViewsOrganizacjaStruktura") @Html.IsActiveParentController("ViewsZatrudnieniAkronimZatrudniony") @Html.IsActiveParentController("ViewsZatrudnieniDzial") @Html.IsActiveParentController("ViewsZatrudnieniPlec")">
+                                <a class="nav-link" href="#">
+                                    <i class="fa-solid fa-list-ol"></i>
+                                    <span>Słowniki</span>
+                                </a>
+                                <ul class="nav nav-children">
+                                    <li class="nav-parent
+                                    @Html.IsActiveParentController("ADUserAddress") @Html.IsActiveParentController("ADDownloadableForm")
+                                    @Html.IsActiveParentController("GeneralHelperText") @Html.IsActiveParentController("FormsDokumentyKosztObslugi")
+                                    @Html.IsActiveParentController("FormsDokumentyRodzajKosztu")
+                                    @Html.IsActiveParentController("FormsHandelRynek") @Html.IsActiveParentController("FormsHandelGrupa")
+                                    @Html.IsActiveParentController("FormsOgolneCelKontaktu") @Html.IsActiveParentController("FormsOgolneKategoriaPracy")  @Html.IsActiveParentController("FormsOgolneObszar") @Html.IsActiveParentController("FormsOgolnePriorytet") @Html.IsActiveParentController("FormsOgolneRecepturyNormWykonawczych") @Html.IsActiveParentController("FormsOgolneRodzajPracy") @Html.IsActiveParentController("FormsOgolneRola") @Html.IsActiveParentController("FormsOgolneStan") @Html.IsActiveParentController("FormsOgolneStatus")
+                                    @Html.IsActiveParentController("FormsSpedycjaCzynnosci") @Html.IsActiveParentController("FormsSpedycjaCzynnosciMagazynowoSpedycyjneLog") @Html.IsActiveParentController("FormsSpedycjaCzynnosciMagazynowoSpedycyjneMag") @Html.IsActiveParentController("FormsSpedycjaStandardyPrzygotowania") @Html.IsActiveParentController("FormsSpedycjaSekcjeTowarow")
+                                    @Html.IsActiveParentController("FormsStanowiskoGrupaOprogramowania") @Html.IsActiveParentController("FormsStanowiskoGrupaNazwaOprogramowania") @Html.IsActiveParentController("FormsStanowiskoObiekt") @Html.IsActiveParentController("FormsStanowiskoNazwaOdpowiedzialnosci") @Html.IsActiveParentController("FormsStanowiskoRodzajePrzesylek") @Html.IsActiveParentController("FormsStanowiskoRodzajeWyp") @Html.IsActiveParentController("FormsStanowiskoZdarzenie")">
+                                        <a class="nav-link" href="#">
+                                            <i class="fa-sharp fa-solid fa-table-list"></i>
+                                            <span>Tabele</span>
+                                        </a>
+                                        <ul class="nav nav-children">
+                                            <li class="nav-parent
+                                            @Html.IsActiveParentController("ADUserAddress") @Html.IsActiveParentController("ADDownloadableForm")">
+                                                <a class="nav-link" href="#">
+                                                    <span>AD</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li class="@Html.IsActive("ADUserAddress", "Index") ">
+                                                        <a class="nav-link" href="/Administration/ADUserAddress">
+                                                            Adresy
+                                                        </a>
+                                                    </li>
+                                                    <li class="@Html.IsActive("ADDownloadableForm", "Index")">
+                                                        <a class="nav-link" href="/Administration/ADDownloadableForm">
+                                                            Formularze do ściągnięcia
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="nav-parent @Html.IsActiveParentController("GeneralHelperText")">
+                                                <a class="nav-link" href="#">
+                                                    <span>Aplikacja</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li class="@Html.IsActive("GeneralHelperText", "Index")">
+                                                        <a class="nav-link" href="/Administration/GeneralHelperText">
+                                                            Teksty pomocnicze
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="nav-parent
+                                            @Html.IsActiveParentController("FormsDokumentyKosztObslugi") @Html.IsActiveParentController("FormsDokumentyRodzajKosztu")
+                                            @Html.IsActiveParentController("FormsHandelGrupa") @Html.IsActiveParentController("FormsHandelRynek")
+                                            @Html.IsActiveParentController("FormsOgolneCelKontaktu") @Html.IsActiveParentController("FormsOgolneKategoriaPracy")  @Html.IsActiveParentController("FormsOgolneObszar") @Html.IsActiveParentController("FormsOgolnePriorytet") @Html.IsActiveParentController("FormsOgolneRecepturyNormWykonawczych") @Html.IsActiveParentController("FormsOgolneRodzajPracy") @Html.IsActiveParentController("FormsOgolneRola") @Html.IsActiveParentController("FormsOgolneStan") @Html.IsActiveParentController("FormsOgolneStatus")
+                                            @Html.IsActiveParentController("FormsSpedycjaCzynnosci") @Html.IsActiveParentController("FormsSpedycjaCzynnosciMagazynowoSpedycyjneLog") @Html.IsActiveParentController("FormsSpedycjaCzynnosciMagazynowoSpedycyjneMag") @Html.IsActiveParentController("FormsSpedycjaStandardyPrzygotowania") @Html.IsActiveParentController("FormsSpedycjaSekcjeTowarow")
+                                            @Html.IsActiveParentController("FormsStanowiskoGrupaOprogramowania") @Html.IsActiveParentController("FormsStanowiskoGrupaNazwaOprogramowania") @Html.IsActiveParentController("FormsStanowiskoObiekt") @Html.IsActiveParentController("FormsStanowiskoNazwaOdpowiedzialnosci") @Html.IsActiveParentController("FormsStanowiskoRodzajePrzesylek") @Html.IsActiveParentController("FormsStanowiskoRodzajeWyp") @Html.IsActiveParentController("FormsStanowiskoZdarzenie")">
+                                                <a class="nav-link" href="#">
+                                                    <span>Formularze</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li class="nav-parent @Html.IsActiveParentController("FormsDokumentyKosztObslugi") @Html.IsActiveParentController("FormsDokumentyRodzajKosztu")">
+                                                        <a class="nav-link" href="#">
+                                                            <span>Dokumenty</span>
+                                                        </a>
+                                                        <ul class="nav nav-children">
+                                                            <li class="@Html.IsActive("FormsDokumentyKosztObslugi", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsDokumentyKosztObslugi">
+                                                                    Koszt obsługi
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsDokumentyRodzajKosztu", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsDokumentyRodzajKosztu">
+                                                                    Rodzaj kosztu
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="nav-parent
+                                                    @Html.IsActiveParentController("FormsHandelGrupa") @Html.IsActiveParentController("FormsHandelRynek")">
+                                                        <a class="nav-link" href="#">
+                                                            <span>Handel</span>
+                                                        </a>
+                                                        <ul class="nav nav-children">
+                                                            <li class="@Html.IsActive("FormsHandelGrupa", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsHandelGrupa">
+                                                                    Grupa
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                        <ul class="nav nav-children">
+                                                            <li class="@Html.IsActive("FormsHandelRynek", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsHandelRynek">
+                                                                    Rynek
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="nav-parent
+                                                    @Html.IsActiveParentController("FormsOgolneCelKontaktu") @Html.IsActiveParentController("FormsOgolneKategoriaPracy")  @Html.IsActiveParentController("FormsOgolneObszar") @Html.IsActiveParentController("FormsOgolnePriorytet") @Html.IsActiveParentController("FormsOgolneRecepturyNormWykonawczych") @Html.IsActiveParentController("FormsOgolneRodzajPracy") @Html.IsActiveParentController("FormsOgolneRola") @Html.IsActiveParentController("FormsOgolneStan") @Html.IsActiveParentController("FormsOgolneStatus")">
+                                                        <a class="nav-link" href="#">
+                                                            <span>Ogolne</span>
+                                                        </a>
+                                                        <ul class="nav nav-children">
+                                                            <li class="@Html.IsActive("FormsOgolneCelKontaktu", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsOgolneCelKontaktu">
+                                                                    Cel kontaktu
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsOgolneKategoriaPracy", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsOgolneKategoriaPracy">
+                                                                    Kategoria pracy
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsOgolneObszar", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsOgolneObszar">
+                                                                    Obszar
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsOgolnePriorytet", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsOgolnePriorytet">
+                                                                    Priorytet
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsOgolneRecepturyNormWykonawczych", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsOgolneRecepturyNormWykonawczych">
+                                                                    Receptury norm wykonawczych
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsOgolneRodzajPracy", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsOgolneRodzajPracy">
+                                                                    Rodzaj pracy
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsOgolneRola", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsOgolneRola">
+                                                                    Rola
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsOgolneStan", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsOgolneStan">
+                                                                    Stan
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsOgolneStatus", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsOgolneStatus">
+                                                                    Status
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="nav-parent
+                                                    @Html.IsActiveParentController("FormsSpedycjaCzynnosci") @Html.IsActiveParentController("FormsSpedycjaCzynnosciMagazynowoSpedycyjneLog") @Html.IsActiveParentController("FormsSpedycjaCzynnosciMagazynowoSpedycyjneMag") @Html.IsActiveParentController("FormsSpedycjaStandardyPrzygotowania") @Html.IsActiveParentController("FormsSpedycjaSekcjeTowarow")">
+                                                        <a class="nav-link" href="#">
+                                                            <span>Spedycja</span>
+                                                        </a>
+                                                        <ul class="nav nav-children">
+                                                            <li class="@Html.IsActive("FormsSpedycjaCzynnosci", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsSpedycjaCzynnosci">
+                                                                    Czynności
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsSpedycjaCzynnosciMagazynowoSpedycyjneLog", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsSpedycjaCzynnosciMagazynowoSpedycyjneLog">
+                                                                    Czynności magazynowo-spedycyjne Log
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsSpedycjaCzynnosciMagazynowoSpedycyjneMag", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsSpedycjaCzynnosciMagazynowoSpedycyjneMag">
+                                                                    Czynności magazynowo-spedycyjne Mag
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsSpedycjaSekcjeTowarow", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsSpedycjaSekcjeTowarow">
+                                                                    Sekcje towarów
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsSpedycjaStandardyPrzygotowania", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsSpedycjaStandardyPrzygotowania">
+                                                                    Standardy przygotowania
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="nav-parent
+                                                    @Html.IsActiveParentController("FormsStanowiskoGrupaOprogramowania") @Html.IsActiveParentController("FormsStanowiskoGrupaNazwaOprogramowania") @Html.IsActiveParentController("FormsStanowiskoNazwaOdpowiedzialnosci") @Html.IsActiveParentController("FormsStanowiskoObiekt") @Html.IsActiveParentController("FormsStanowiskoRodzajePrzesylek") @Html.IsActiveParentController("FormsStanowiskoRodzajeWyp") @Html.IsActiveParentController("FormsStanowiskoZdarzenie")">
+                                                        <a class="nav-link" href="#">
+                                                            <span>Stanowisko</span>
+                                                        </a>
+                                                        <ul class="nav nav-children">
+                                                            <li class="@Html.IsActive("FormsStanowiskoGrupaOprogramowania", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsStanowiskoGrupaOprogramowania">
+                                                                    Grupa oprogramowania
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsStanowiskoNazwaOdpowiedzialnosci", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsStanowiskoNazwaOdpowiedzialnosci">
+                                                                    Nazwa odpowiedzialności
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsStanowiskoGrupaNazwaOprogramowania", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsStanowiskoGrupaNazwaOprogramowania">
+                                                                    Nazwa oprogramowania
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsStanowiskoObiekt", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsStanowiskoObiekt">
+                                                                    Obiekt
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsStanowiskoRodzajePrzesylek", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsStanowiskoRodzajePrzesylek">
+                                                                    Rodzaje przesyłek
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsStanowiskoRodzajeWyp", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsStanowiskoRodzajeWyp">
+                                                                    Rodzaje wyposażenia
+                                                                </a>
+                                                            </li>
+                                                            <li class="@Html.IsActive("FormsStanowiskoZdarzenie", "Index") ">
+                                                                <a class="nav-link" href="/Administration/FormsStanowiskoZdarzenie">
+                                                                    Zdarzenie
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-parent
+                                    @Html.IsActiveParentController("ViewsKontrahentAkronimKontrahenta") @Html.IsActiveParentController("ViewsMagazynKodMagazynu") @Html.IsActiveParentController("ViewsMagazynPoziomyCen") @Html.IsActiveParentController("ViewsOrganizacjaLokalizacje") @Html.IsActiveParentController("ViewsOrganizacjaStruktura") @Html.IsActiveParentController("ViewsZatrudnieniAkronimZatrudniony") @Html.IsActiveParentController("ViewsZatrudnieniDzial") @Html.IsActiveParentController("ViewsZatrudnieniPlec")">
+                                        <a class="nav-link" href="#">
+                                            <i class="fa-sharp fa-solid fa-table-columns"></i>
+                                            <span>Widoki</span>
+                                        </a>
+                                        <ul class="nav nav-children">
+                                            <li class="nav-parent @Html.IsActiveParentController("ViewsKontrahentAkronimKontrahenta")">
+                                                <a class="nav-link" href="#">
+                                                    <span>Kontrahent</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li class="@Html.IsActive("ViewsKontrahentAkronimKontrahenta", "Index") ">
+                                                        <a class="nav-link" href="/Administration/ViewsKontrahentAkronimKontrahenta">
+                                                            Akronimy kontrahentów
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="nav-parent @Html.IsActiveParentController("ViewsMagazynKodMagazynu") @Html.IsActiveParentController("ViewsMagazynPoziomyCen")">
+                                                <a class="nav-link" href="#">
+                                                    <span>Magazyn</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li class="@Html.IsActive("ViewsMagazynKodMagazynu", "Index") ">
+                                                        <a class="nav-link" href="/Administration/ViewsMagazynKodMagazynu">
+                                                            Kod magazynu
+                                                        </a>
+                                                    </li>
+                                                    <li class="@Html.IsActive("ViewsMagazynPoziomyCen", "Index") ">
+                                                        <a class="nav-link" href="/Administration/ViewsMagazynPoziomyCen">
+                                                            Poziomy cen
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="nav-parent @Html.IsActiveParentController("ViewsOrganizacjaLokalizacje") @Html.IsActiveParentController("ViewsOrganizacjaStruktura")">
+                                                <a class="nav-link" href="#">
+                                                    <span>Organizacja</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li class="@Html.IsActive("ViewsOrganizacjaLokalizacje", "Index") ">
+                                                        <a class="nav-link" href="/Administration/ViewsOrganizacjaLokalizacje">
+                                                            Lokalizacje
+                                                        </a>
+                                                    </li>
+                                                    <li class="@Html.IsActive("ViewsOrganizacjaStruktura", "Index") ">
+                                                        <a class="nav-link" href="/Administration/ViewsOrganizacjaStruktura">
+                                                            Struktura
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="nav-parent @Html.IsActiveParentController("ViewsZatrudnieniAkronimZatrudniony") @Html.IsActiveParentController("ViewsZatrudnieniDzial") @Html.IsActiveParentController("ViewsZatrudnieniPlec")">
+                                                <a class="nav-link" href="#">
+                                                    <span>Zatrudnieni</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li class="@Html.IsActive("ViewsZatrudnieniAkronimZatrudniony", "Index") ">
+                                                        <a class="nav-link" href="/Administration/ViewsZatrudnieniAkronimZatrudniony">
+                                                            Akronimy zatrudnionych
+                                                        </a>
+                                                    </li>
+                                                    <li class="@Html.IsActive("ViewsZatrudnieniDzial", "Index") ">
+                                                        <a class="nav-link" href="/Administration/ViewsZatrudnieniDzial">
+                                                            Dział
+                                                        </a>
+                                                    </li>
+                                                    <li class="@Html.IsActive("ViewsZatrudnieniPlec", "Index") ">
+                                                        <a class="nav-link" href="/Administration/ViewsZatrudnieniPlec">
+                                                            Płeć
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="@Html.IsActive("GeneralApplicationPermissionsRule", "Index") ">
+                                <a class="nav-link" href="/Administration/GeneralApplicationPermissionsRule">
+                                    <i class="fa-sharp fa-solid fa-user-lock"></i>
+                                    <span>Uprawnienia</span>
+                                </a>
+                            </li>
+                            <li class="nav-parent @Html.IsActiveParentController("ToolsQuotaTool")">
+                                <a class="nav-link" href="#">
+                                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                                    <span>Narzędzia</span>
+                                </a>
+                                <ul class="nav nav-children">
+                                    <li class="@Html.IsActive("ToolsQuotaTool", "Index") ">
+                                        <a class="nav-link" href="/Administration/ToolsQuotaTool">
+                                            <i class="fa-solid fa-chart-pie"></i>
+                                            <span>Wpisy przydziału dyskrowego</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-parent @Html.IsActiveParentArea("Staff")">
+                        <a class="nav-link" href="#">
+                            <i class="bx bx-layout" aria-hidden="true"></i>
+                            <span>Kadry</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li class="@Html.IsActive("AD", "Users") @Html.IsActive("AD", "CreateUser")">
+                                <a class="nav-link" href="/Staff/AD/Users">
+                                    <i class="fa-sharp fa-solid fa-users"></i>
+                                    <span>Użytkownicy domeny SOFTLAND20</span>
+                                </a>
+                            </li>
+                            <li class="@Html.IsActive("AD", "Groups")">
+                                <a class="nav-link" href="/Staff/AD/Groups">
+                                    <i class="fa-solid fa-building-user"></i>
+                                    <span>Grupy zabezpieczeń domeny SOFTLAND20</span>
+                                </a>
+                            </li>
+                            <li class="@Html.IsActive("AD", "Permissions")">
+                                <a class="nav-link" href="/Staff/AD/Permissions">
+                                    <i class="fa-solid fa-user-pen"></i>             
+                                    <span>Uprawnienia użytkownika</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-parent @Html.IsActiveParentArea("Forms")">
+                        <a class="nav-link" href="#">
+                            <i class="fa-regular fa-rectangle-list"></i>
+                            <span>Formularze</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li class="nav-parent
+                            @Html.IsActiveParentController("CashflowForm")
+                            @Html.IsActiveParentController("SpedycjaKonfekcjaForm")">
+                                <a class="nav-link" href="#">
+                                    <span>Działowe</span>
+                                </a>
+                                <ul class="nav nav-children">
+                                    <li class="nav-parent
+                                    @Html.IsActiveParentController("CashflowForm")">
+                                        <a class="nav-link" href="#">
+                                            <i class="fa-solid fa-a"></i>
+                                            <span>Administracja</span>
+                                        </a>
+                                        <ul class="nav nav-children">
+                                            <li class="nav-parent
+                                            @Html.IsActiveParentController("CashflowForm")">
+                                                <a class="nav-link" href="#">
+                                                    <i class="fa-solid fa-money-bills"></i>
+                                                    <span>Księgowość</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li class="@Html.IsActive("CashflowForm", "Index")">
+                                                        <a class="nav-link" href="/Forms/CashflowForm">
+                                                            <span>Cashflow</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    @*                                     <li class="nav-parent">
+                                    <a class="nav-link" href="#">
+                                    <i class="fa-solid fa-h"></i>
+                                    <span>Handel</span>
+                                    </a>
+                                    </li>
+                                    *@
+                                    <li class="nav-parent
+                                    @Html.IsActiveParentController("SpedycjaKonfekcjaForm")">
+                                        <a class="nav-link" href="#">
+                                            <i class="fa-solid fa-l"></i>
+                                            <span>Logistyka</span>
+                                        </a>
+                                        <ul class="nav nav-children">
+                                            @*                                             <li class="nav-parent">
+                                            <a class="nav-link" href="#">
+                                            <i class="fa-solid fa-clipboard"></i>
+                                            <span>Dostawy</span>
+                                            </a>
+                                            </li>
+                                            *@
+                                            <li class="nav-parent @Html.IsActiveParentController("SpedycjaKonfekcjaForm")">
+                                                <a class="nav-link" href="#">
+                                                    <i class="fa-solid fa-truck"></i>
+                                                    <span>Spedycja</span>
+                                                </a>
+                                                <ul class="nav nav-children">
+                                                    <li class="@Html.IsActive("SpedycjaKonfekcjaForm", "Index") @Html.IsActive("SpedycjaKonfekcjaForm", "Create")">
+                                                        <a class="nav-link" href="/Forms/SpedycjaKonfekcjaForm">
+                                                            Konfekcja
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    @*                                     <li class="nav-parent">
+                                    <a class="nav-link" href="#">
+                                    <i class="fa-solid fa-m"></i>
+                                    <span>Marketing</span>
+                                    </a>
+                                    </li>
+                                    <li class="nav-parent">
+                                    <a class="nav-link" href="#">
+                                    <i class="fa-solid fa-p"></i>
+                                    <span>Produkcja</span>
+                                    </a>
+                                    </li>
+                                    *@
+                                </ul>
+                            </li>
+                            <li class="nav-parent
+                            @Html.IsActiveParentController("KLKartaForm")
+                            @Html.IsActiveParentController("KLKKKForm")
+                            @Html.IsActiveParentController("KLOsobaForm")
+                            @Html.IsActiveParentController("KLRozlForm")
+                            @Html.IsActiveParentController("KLTerminKorForm")
+                            @Html.IsActiveParentController("KLXMLForm")
+                            @Html.IsActiveParentController("MPKForm")
+                            @Html.IsActiveParentController("PraceZleconeForm")
+                            @Html.IsActiveParentController("StanowiskoDOWForm")
+                            @Html.IsActiveParentController("StanowiskoListaWypForm")
+                            @Html.IsActiveParentController("StanowiskoListaWypWSZForm")
+                            @Html.IsActiveParentController("StanowiskoObiektyITForm")
+                            @Html.IsActiveParentController("StanowiskoOdbiorPrzesylekForm")
+                            @Html.IsActiveParentController("StanowiskoOdpowiedzialnosciForm")
+                            @Html.IsActiveParentController("StanowiskoOprogramowanieForm")
+                            @Html.IsActiveParentController("StanowiskoSprawyForm")">
+                                <a class="nav-link" href="#">
+                                    <span>Ogólne</span>
+                                </a>
+                                <ul class="nav nav-children">
+                                    <li class="nav-parent
+                                    @Html.IsActiveParentController("KLKartaForm")
+                                    @Html.IsActiveParentController("KLKKKForm")
+                                    @Html.IsActiveParentController("KLOsobaForm")
+                                    @Html.IsActiveParentController("KLRozlForm")
+                                    @Html.IsActiveParentController("KLTerminKorForm")
+                                    @Html.IsActiveParentController("KLXMLForm")">
+                                        <a class="nav-link" href="#">
+                                            <i class="fa-solid fa-address-card"></i>
+                                            <span>KL</span>
+                                        </a>
+                                        <ul class="nav nav-children">
+                                            <li class="@Html.IsActive("KLKartaForm", "Index")">
+                                                <a class="nav-link" href="/Forms/KLKartaForm">
+                                                    Karta
+                                                </a>
+                                            </li>
+                                            <li class="@Html.IsActive("KLKKKForm", "Index")">
+                                                <a class="nav-link" href="/Forms/KLKKKForm">
+                                                    KKK
+                                                </a>
+                                            </li>
+                                            <li class="@Html.IsActive("KLOsobaForm", "Index")">
+                                                <a class="nav-link" href="/Forms/KLOsobaForm">
+                                                    Osoba
+                                                </a>
+                                            </li>
+                                            <li class="@Html.IsActive("KLRozlForm", "Index")">
+                                                <a class="nav-link" href="/Forms/KLRozlForm">
+                                                    Rozl
+                                                </a>
+                                            </li>
+                                            <li class="@Html.IsActive("KLTerminKorForm", "Index")">
+                                                <a class="nav-link" href="/Forms/KLTerminKorForm">
+                                                    Termin Kor
+                                                </a>
+                                            </li>
+                                            <li class="@Html.IsActive("KLXMLForm", "Index")">
+                                                <a class="nav-link" href="/Forms/KLXMLForm">
+                                                    XML
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="@Html.IsActive("MPKForm", "Index") @Html.IsActive("MPKForm", "Create")">
+                                        <a class="nav-link" href="/Forms/MPKForm">
+                                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                                            <span>MPK</span>
+                                        </a>
+                                    </li>
+                                    @*                                     <li class="@Html.IsActive("PraceZleconeForm", "Index") @Html.IsActive("PraceZleconeForm", "Create")">
+                                    <a class="nav-link" href="/Forms/PraceZleconeForm">
+                                    <i class="fa-solid fa-vest-patches"></i>
+                                    <span>Prace zlecone</span>
+                                    </a>
+                                    </li>
+                                    *@
+                                    <li class="nav-parent
+                                    @Html.IsActiveParentController("StanowiskoDOWForm")
+                                    @Html.IsActiveParentController("StanowiskoListaWypForm")
+                                    @Html.IsActiveParentController("StanowiskoListaWypWSZForm")
+                                    @Html.IsActiveParentController("StanowiskoObiektyITForm")
+                                    @Html.IsActiveParentController("StanowiskoOdbiorPrzesylekForm")
+                                    @Html.IsActiveParentController("StanowiskoOdpowiedzialnosciForm")
+                                    @Html.IsActiveParentController("StanowiskoOprogramowanieForm")
+                                    @Html.IsActiveParentController("StanowiskoSprawyForm")">
+                                        <a class="nav-link" href="#">
+                                            <i class="fa-solid fa-computer"></i>
+                                            <span>Stanowisko</span>
+                                        </a>
+                                        <ul class="nav nav-children">
+                                            <li class="@Html.IsActive("StanowiskoDOWForm", "Index")">
+                                                <a class="nav-link" href="/Forms/StanowiskoDOWForm">
+                                                    DOW
+                                                </a>
+                                            </li>
+                                            <li class="@Html.IsActive("StanowiskoListaWypForm", "Index")">
+                                                <a class="nav-link" href="/Forms/StanowiskoListaWypForm">
+                                                    Lista Wyp
+                                                </a>
+                                            </li>
+                                            <li class="@Html.IsActive("StanowiskoListaWypWSZForm", "Index")">
+                                                <a class="nav-link" href="/Forms/StanowiskoListaWypWSZForm">
+                                                    Lista Wyp WSZ
+                                                </a>
+                                            </li>
+                                            <li class="@Html.IsActive("StanowiskoObiektyITForm", "Index")">
+                                                <a class="nav-link" href="/Forms/StanowiskoObiektyITForm">
+                                                    Obiekty IT
+                                                </a>
+                                            </li>
+                                            <li class="@Html.IsActive("StanowiskoOdbiorPrzesylekForm", "Index")">
+                                                <a class="nav-link" href="/Forms/StanowiskoOdbiorPrzesylekForm">
+                                                    Odbiór przesyłek
+                                                </a>
+                                            </li>
+                                            <li class="@Html.IsActive("StanowiskoOdpowiedzialnosciForm", "Index")">
+                                                <a class="nav-link" href="/Forms/StanowiskoOdpowiedzialnosciForm">
+                                                    Odpowiedzialności
+                                                </a>
+                                            </li>
+                                            <li class="@Html.IsActive("StanowiskoOprogramowanieForm", "Index") @Html.IsActive("StanowiskoOprogramowanieForm", "Create")">
+                                                <a class="nav-link" href="/Forms/StanowiskoOprogramowanieForm">
+                                                    Oprogramowanie
+                                                </a>
+                                            </li>
+                                            <li class="@Html.IsActive("StanowiskoSprawyForm", "Index")">
+                                                <a class="nav-link" href="/Forms/StanowiskoSprawyForm">
+                                                    Sprawy
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</aside>

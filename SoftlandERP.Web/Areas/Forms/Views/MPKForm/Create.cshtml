@@ -1,0 +1,119 @@
+﻿@model MPKForm
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Create", "MPKForm", FormMethod.Post, new { @id = "createform", @autocomplete = "off" }))
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Created)
+    @Html.HiddenFor(model => model.CreatedBy)
+    <div class="row">
+        <div class="col-md-5">
+            <div style="overflow-y: auto;">
+                <blockquote class="danger">
+                    <div class="form-group">
+                        <label class="col-form-label" for="MPKList">@Html.DisplayNameFor(model => model.MPKList)</label>
+                        @Html.DropDownListFor(model => model.MPKList, ViewBag.KosztObslugi as SelectList, new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.MPKList, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="Data">@Html.DisplayNameFor(model => model.Data)</label>
+                        @Html.TextBoxFor(model => model.Data, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date"})
+                        @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="RodzajKosztu">@Html.DisplayNameFor(model => model.RodzajKosztu)</label>
+                        @Html.DropDownListFor(model => model.RodzajKosztu, ViewBag.RodzajKosztu as SelectList, new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.RodzajKosztu, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="IDK">@Html.DisplayNameFor(model => model.IDK)</label>
+                        @Html.DropDownListFor(model => model.IDK, ViewBag.Akronimy as SelectList, new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.IDK, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="IDS">@Html.DisplayNameFor(model => model.IDS)</label>
+                        @Html.TextBoxFor(model => model.IDS, new { @class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.IDS, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="NrDokumentu">@Html.DisplayNameFor(model => model.NrDokumentu)</label>
+                        @Html.TextBoxFor(model => model.NrDokumentu, new { @class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.NrDokumentu, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="Kwota">@Html.DisplayNameFor(model => model.Kwota)</label>
+                        @Html.EditorFor(model => model.Kwota, new { htmlAttributes =  new { @class = "form-control", @type="text", @placeholder="0,00" } })
+                        @Html.ValidationMessageFor(model => model.Kwota, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="Waluta">@Html.DisplayNameFor(model => model.Waluta)</label>
+                        @Html.DropDownListFor(model => model.Waluta, ViewBag.Currency as SelectList, new { @class = "form-control select2"})
+                        @Html.ValidationMessageFor(model => model.Waluta, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="Opis">@Html.DisplayNameFor(model => model.Opis)</label>
+                        @Html.TextBoxFor(model => model.Opis, new { @class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.Opis, "", new { @class = "text-danger" })
+                    </div>
+                    @if (Model.CreatedBy != null)
+                    {
+                        <div class="form-group">
+                            <label class="col-form-label" for="Stan">@Html.DisplayNameFor(model => model.Stan)</label>
+                            @Html.DropDownListFor(model => model.Stan, ViewBag.Stany as SelectList, new { @class = "form-control select2" })
+                            @Html.ValidationMessageFor(model => model.Stan, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="Status">@Html.DisplayNameFor(model => model.Status)</label>
+                            @Html.DropDownListFor(model => model.Status, ViewBag.Statusy as SelectList, new { @class = "form-control select2" })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                </blockquote>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <table class="table table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <th colspan="6">5 ostatnich Aktywnych wpisów</th>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Data)</th>
+                        <th>@Html.DisplayNameFor(model => model.RodzajKosztu)</th>
+                        <th>@Html.DisplayNameFor(model => model.IDK)</th>
+                        <th>@Html.DisplayNameFor(model => model.IDS)</th>
+                        <th>@Html.DisplayNameFor(model => model.NrDokumentu)</th>
+                        <th>@Html.DisplayNameFor(model => model.Kwota)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var mpk in ViewBag.LastFiveMPKs)
+                    {
+                        <tr>
+                            <td>@mpk.Data.ToShortDateString()</td>
+                            <td>@mpk.RodzajKosztu</td>
+                            <td>@mpk.IDK</td>
+                            <td>@mpk.IDS</td>
+                            <td style="max-width: 20px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="@mpk.NrDokumentu">@mpk.NrDokumentu</td>
+                            <td>@mpk.Kwota @mpk.Waluta</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="float-end">
+        <button type="button" class="mb-1 mt-1 me-1 btn btn-secondary btn-lg btn-block" style="width: 200px" onclick="window.history.back()">Wróć</button>
+        <button type="submit" class="mb-1 mt-1 me-1 btn btn-primary btn-lg btn-block" style="width: 200px" value="Submit">Zapisz</button>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".select2").select2();
+        });
+    </script>
+}

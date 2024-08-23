@@ -1,0 +1,61 @@
+﻿@model IEnumerable<DownloadableForm>
+
+@{
+    int index = 0;
+}
+
+<div class="row">
+    <table class="table-responsive table-bordered table-striped mb-0" id="datatable">
+        <thead>
+            <tr>
+                <th class="center">#</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Category)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Path)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Created)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.CreatedBy)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Updated)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.UpdatedBy)</th>
+                @if (ViewBag.IsAdmin)
+                {
+                    <th></th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var form in Model)
+                {
+                    <tr>
+                        <td class="center">@(++index)</td>
+                        <td class="center">@Html.DisplayFor(u => form.Category)</td>
+                        <td class="center">@Html.DisplayFor(u => form.Path)</td>
+                        <td class="center">@Html.DisplayFor(u => form.Created)</td>
+                        <td class="center">@Html.DisplayFor(u => form.CreatedBy)</td>
+                        <td class="center">@Html.DisplayFor(u => form.Updated)</td>
+                        <td class="center">@Html.DisplayFor(u => form.UpdatedBy)</td>
+                        @if (ViewBag.IsAdmin)
+                        {
+                            <td>
+                                <div class="btn-group flex-wrap">
+                                    <button type="button" class="btn btn-xs btn-outline-danger" id="modify-button" data-id="@form.Id"><i class="fas fa-pencil-alt"></i></button>
+                                    <button type="button" class="btn btn-xs btn-outline-danger" id="delete-button" data-id="@form.Id"><i class="fa-regular fa-trash-can"></i></button>
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="modal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="modal-content">
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Administration/Vocabularies/AD/downloadableform.index.js"></script>
+}

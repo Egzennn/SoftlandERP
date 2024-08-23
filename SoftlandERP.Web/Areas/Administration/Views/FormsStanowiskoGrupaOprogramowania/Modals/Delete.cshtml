@@ -1,0 +1,21 @@
+﻿@model StanowiskoGrupaOprogramowania
+
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="modal-title">@ViewBag.ModalTitle</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+@using (Html.BeginForm("Delete", "FormsStanowiskoGrupaOprogramowania", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.Id)
+    <div class="modal-body">
+        <blockquote class="danger">
+            <div class="form-group">
+                <p style="color: #fff;">Czy na pewno chcesz usunąć rekord?</p>
+            </div>
+        </blockquote>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nie</button>
+        <button type="submit" class="btn btn-primary" value="Submit">Tak</button>
+    </div>
+}

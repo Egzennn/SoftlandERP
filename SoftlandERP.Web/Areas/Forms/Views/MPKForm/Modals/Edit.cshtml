@@ -1,0 +1,91 @@
+﻿@model MPKForm
+
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="modal-title">@ViewBag.ModalTitle</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+@using (Html.BeginForm("Edit", "MPKForm", FormMethod.Post, new { @id = "createform", @autocomplete = "off" }))
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Created)
+    @Html.HiddenFor(model => model.CreatedBy)
+    <div class="modal-body">
+        <div class="row">
+            <div style="max-height: 600px; overflow-y: auto;">
+                <blockquote class="danger">
+                    <div class="form-group">
+                        <label class="col-form-label" for="MPKList">@Html.DisplayNameFor(model => model.MPKList)</label>
+                        @Html.DropDownListFor(model => model.MPKList, ViewBag.KosztObslugi as SelectList, new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.MPKList, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="Data">@Html.DisplayNameFor(model => model.Data)</label>
+                        @Html.TextBoxFor(model => model.Data, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date"})
+                        @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="RodzajKosztu">@Html.DisplayNameFor(model => model.RodzajKosztu)</label>
+                        @Html.DropDownListFor(model => model.RodzajKosztu, ViewBag.RodzajKosztu as SelectList, new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.RodzajKosztu, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="IDK">@Html.DisplayNameFor(model => model.IDK)</label>
+                        @Html.DropDownListFor(model => model.IDK, ViewBag.Akronimy as SelectList, new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.IDK, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="IDS">@Html.DisplayNameFor(model => model.IDS)</label>
+                        @Html.TextBoxFor(model => model.IDS, new { @class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.IDS, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="NrDokumentu">@Html.DisplayNameFor(model => model.NrDokumentu)</label>
+                        @Html.TextBoxFor(model => model.NrDokumentu, new { @class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.NrDokumentu, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="Kwota">@Html.DisplayNameFor(model => model.Kwota)</label>
+                        @Html.EditorFor(model => model.Kwota, new { htmlAttributes =  new { @class = "form-control", @type="text", @placeholder="0,00" } })
+                        @Html.ValidationMessageFor(model => model.Kwota, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="Waluta">@Html.DisplayNameFor(model => model.Waluta)</label>
+                        @Html.DropDownListFor(model => model.Waluta, ViewBag.Currency as SelectList, new { @class = "form-control select2"})
+                        @Html.ValidationMessageFor(model => model.Waluta, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="Opis">@Html.DisplayNameFor(model => model.Opis)</label>
+                        @Html.TextBoxFor(model => model.Opis, new { @class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.Opis, "", new { @class = "text-danger" })
+                    </div>
+                    @if (Model.CreatedBy != null)
+                    {
+                        <div class="form-group">
+                            <label class="col-form-label" for="Stan">@Html.DisplayNameFor(model => model.Stan)</label>
+                            @Html.DropDownListFor(model => model.Stan, ViewBag.Stany as SelectList, new { @class = "form-control select2" })
+                            @Html.ValidationMessageFor(model => model.Stan, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="Status">@Html.DisplayNameFor(model => model.Status)</label>
+                            @Html.DropDownListFor(model => model.Status, ViewBag.Statusy as SelectList, new { @class = "form-control select2" })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                </blockquote>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odrzuć</button>
+        <button type="submit" class="btn btn-primary" value="Submit">Zapisz</button>
+    </div>
+}
+
+
+<script>
+    $('.select2').select2({
+        dropdownParent: $('#modal-content')
+    });
+</script>
+<script src="~/vendor/jquery-validation/jquery.validate.js"></script>
+<script src="~/vendor/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

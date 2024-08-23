@@ -1,0 +1,52 @@
+﻿@using SoftlandERP.Data.Entities.Views;
+@{
+    var model = (List<Cashflow>)ViewBag.Cashflow;
+}
+
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="modal-title">@ViewBag.ModalTitle</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <div style="max-height: 600px; overflow-y: auto;">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Dane z XL</th>
+                </tr>
+                <tr>
+                    <th>Strona</th>
+                    <th>Dokument</th>
+                    <th>DokumentObcy</th>
+                    <th>Akronim</th>
+                    <th>Termin</th>
+                    <th>Kwota</th>
+                    <th>Pozostalo</th>
+                    <th>Waluta</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cashflow in model)
+                {
+                    <tr>
+                        <td>@cashflow.Strona</td>
+                        <td>@cashflow.Dokument</td>
+                        <td>@cashflow.DokumentObcy</td>
+                        <td>@cashflow.Akronim</td>
+                        <td>@cashflow.Termin.ToShortDateString()</td>
+                        <td>@cashflow.Kwota</td>
+                        <td>@cashflow.Pozostalo</td>
+                        <td>@cashflow.Waluta</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@using (Html.BeginForm("Create", "CashflowForm", FormMethod.Post, new { @id = "createform", @autocomplete = "off" }))
+{
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odrzuć</button>
+        <button type="submit" class="btn btn-primary" value="Submit">Zapisz</button>
+    </div>
+}

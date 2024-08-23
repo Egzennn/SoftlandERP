@@ -1,0 +1,121 @@
+﻿@model IEnumerable<StanowiskoListaWypForm>
+
+<div class="modal fade" id="modal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content" id="modal-content">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <table class="table-responsive table-bordered table-striped mb-0" id="datatable">
+        <thead>
+            <tr role="row">
+                <th class="center">@Html.DisplayNameFor(model => model.Lokalizacja)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Pomieszczenie)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Rodzaj)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Priorytet)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.IDI)</th>
+                <th hidden class="center">@Html.DisplayNameFor(model => model.GrupaProduktu)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Nazwa)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.JednostkaMiary)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Ilosc)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Created)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.CreatedBy)</th>
+                <th hidden class="center">@Html.DisplayNameFor(model => model.Updated)</th>
+                <th hidden class="center">@Html.DisplayNameFor(model => model.UpdatedBy)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Stan)</th>
+                <th hidden class="center">@Html.DisplayNameFor(model => model.Status)</th>
+                <th class="center">Akcja</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var form in Model)
+            {
+                <tr>
+                    <td class="center">@Html.DisplayFor(u => form.Lokalizacja)</td>
+                    <td class="center">@Html.DisplayFor(u => form.Pomieszczenie)</td>
+                    <td class="center">@Html.DisplayFor(u => form.Rodzaj)</td>
+                    <td class="center">@Html.DisplayFor(u => form.Priorytet)</td>
+                    <td class="center">@Html.DisplayFor(u => form.IDI)</td>
+                    <td hidden class="center">@Html.DisplayFor(u => form.GrupaProduktu)</td>
+                    <td class="center">@Html.DisplayFor(u => form.Nazwa)</td>
+                    <td class="center">@Html.DisplayFor(u => form.JednostkaMiary)</td>
+                    <td class="center">@Html.DisplayFor(u => form.Ilosc)</td>
+                    <td class="center">@Html.DisplayFor(u => form.Created)</td>
+                    <td class="center">@Html.DisplayFor(u => form.CreatedBy)</td>
+                    <td hidden class="center">@Html.DisplayFor(u => form.Updated)</td>
+                    <td hidden class="center">@Html.DisplayFor(u => form.UpdatedBy)</td>
+                    <td class="center">
+                        @switch (form.Stan)
+                        {
+                            case "Aktywny":
+                                <span class="badge badge-success">@Html.DisplayFor(u => form.Stan)</span>
+                                break;
+                            case "Realizacja":
+                                <span class="badge badge-warning">@Html.DisplayFor(u => form.Stan)</span>
+                                break;
+                            case "Przekazany":
+                                <span class="badge badge-default">@Html.DisplayFor(u => form.Stan)</span>
+                                break;
+                            case "Plan":
+                                <span class="badge badge-info">@Html.DisplayFor(u => form.Stan)</span>
+                                break;
+                            default:
+                                <span class="badge badge-danger">@Html.DisplayFor(u => form.Stan)</span>
+                                break;
+                        }
+                    </td>
+                    <td hidden class="center">
+                        @switch (form.Status)
+                        {
+                            case "Akceptacja":
+                                <span class="badge badge-success">@Html.DisplayFor(u => form.Status)</span>
+                                break;
+                            case "Plan":
+                                <span class="badge badge-info">@Html.DisplayFor(u => form.Status)</span>
+                                break;
+                            default:
+                                <span class="badge badge-danger">@Html.DisplayFor(u => form.Status)</span>
+                                break;
+                        }
+                    </td>
+                    <td>
+                        <div class="btn-group btn-sm">
+                            @if (ViewBag.IsIT)
+                            {
+                                <button type="button" class="btn btn-xs btn-outline-danger" id="modify-button" data-id="@form.Id"><i class="fas fa-pencil-alt"></i></button>
+                                <button type="button" class="btn btn-xs btn-outline-danger" id="clone-button" data-id="@form.Id"><i class="fa-solid fa-clone"></i></button>
+                                <button type="button" class="btn btn-xs btn-outline-danger" id="delete-button" data-id="@form.Id"><i class="fa-regular fa-trash-can"></i></button>
+                            }
+                            else
+                            {
+                                @if (form.Stan != "Archiwalny")
+                                {
+                                    <button type="button" class="btn btn-xs btn-outline-danger" id="modify-button" data-id="@form.Id"><i class="fas fa-pencil-alt"></i></button>
+                                    <button type="button" class="btn btn-xs btn-outline-danger" id="clone-button" data-id="@form.Id"><i class="fa-solid fa-clone"></i></button>
+                                }
+                                else
+                                {
+                                    <button disabled type="button" class="btn btn-xs btn-outline-danger" id="modify-button" data-id="@form.Id"><i class="fas fa-pencil-alt"></i></button>
+                                    <button disabled type="button" class="btn btn-xs btn-outline-danger" id="clone-button" data-id="@form.Id"><i class="fa-solid fa-clone"></i></button>
+                                }
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="modal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content" id="modal-content">
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Forms/Stanowisko/stanowiskolistawypform.index.js"></script>
+}

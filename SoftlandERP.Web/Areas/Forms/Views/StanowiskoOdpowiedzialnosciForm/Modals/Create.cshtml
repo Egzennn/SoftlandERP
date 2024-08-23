@@ -1,0 +1,162 @@
+﻿@model StanowiskoOdpowiedzialnosciForm
+
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="modal-title">@ViewBag.ModalTitle</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+@using (Html.BeginForm("Create", "StanowiskoOdpowiedzialnosciForm", FormMethod.Post, new { @id = "createform", @autocomplete = "off" }))
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Created)
+    @Html.HiddenFor(model => model.CreatedBy)
+    <div class="modal-body">
+        <div class="row">
+            <blockquote class="danger">
+                <div class="form-group">
+                    <table>
+                        <thead>
+                            <tr role="row">
+                                <th class="center">@Html.DisplayNameFor(model => model.DataRozpoczecia)</th>
+                                <th class="center">@Html.DisplayNameFor(model => model.DataZakonczenia)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr role="row">
+                                <td class="center">
+                                    @Html.TextBoxFor(model => model.DataRozpoczecia, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local" })
+                                </td>
+                                <td class="center">
+                                    @Html.TextBoxFor(model => model.DataZakonczenia, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local" })
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="form-group">
+                    <table>
+                        <thead>
+                            <tr role="row">
+                                <th class="center">@Html.DisplayNameFor(model => model.LiczbaInterwalow)</th>
+                                <th class="center">@Html.DisplayNameFor(model => model.Interwal)</th>
+                                <th class="center">@Html.DisplayNameFor(model => model.Przesuniecie)</th>
+                                <th class="center">@Html.DisplayNameFor(model => model.Dni)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr role="row">
+                                <td class="center">
+                                    @Html.TextBoxFor(model => model.LiczbaInterwalow, new { @class = "form-control", type="number", min="0" })
+                                    @Html.ValidationMessageFor(model => model.LiczbaInterwalow, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="center">
+                                    @Html.DropDownListFor(model => model.Interwal, ViewBag.Interwal as SelectList, new { @class = "form-control select2" })
+                                    @Html.ValidationMessageFor(model => model.Interwal, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="center">
+                                    @Html.TextBoxFor(model => model.Przesuniecie, new { @class = "form-control", type="number", min="0" })
+                                    @Html.ValidationMessageFor(model => model.Przesuniecie, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="center">
+                                    @Html.DropDownListFor(model => model.Dni, ViewBag.Dni as SelectList, new { @class = "form-control select2" })
+                                    @Html.ValidationMessageFor(model => model.LiczbaInterwalow, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="form-group">
+                    <table>
+                        <thead>
+                            <tr role="row">
+                                <th class="center">@Html.DisplayNameFor(model => model.Symbol)</th>
+                                <th class="center">Nazwa odpowiedzialności</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr role="row">
+                                <td class="center">
+                                    @Html.DropDownListFor(model => model.Symbol, ViewBag.Symbol as SelectList, new { @class = "form-control select2" })
+                                    @Html.ValidationMessageFor(model => model.Symbol, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="center">
+                                    @Html.TextBox("NazwaOdpowiedzialnosci", null, new { @class = "form-control", @type = "text", @readonly = "readonly", @id = "NazwaOdpowiedzialnosci", @style = "width: 600px;" })
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="form-group">
+                    <table>
+                        <thead>
+                            <tr role="row">
+                                <th class="center">@Html.DisplayNameFor(model => model.KluczPrzydzialu)</th>
+                                <th class="center">@Html.DisplayNameFor(model => model.Lokalizacja)</th>
+                                <th class="center">@Html.DisplayNameFor(model => model.Dzial)</th>
+                                <th class="center">@Html.DisplayNameFor(model => model.AkronimWyk)</th>
+                                <th class="center">Imię i Nazwisko</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr role="row">
+                                <td class="center">
+                                    @Html.DropDownListFor(model => model.KluczPrzydzialu, ViewBag.KluczPrzydzialu as SelectList, new { @class = "form-control select2" })
+                                    @Html.ValidationMessageFor(model => model.KluczPrzydzialu, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="center">
+                                    @Html.DropDownListFor(model => model.Lokalizacja, ViewBag.Lokalizacja as SelectList, new { @class = "form-control select2" })
+                                    @Html.ValidationMessageFor(model => model.Lokalizacja, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="center">
+                                    @Html.DropDownListFor(model => model.Dzial, ViewBag.Dzial as SelectList, new { @class = "form-control select2" })
+                                    @Html.ValidationMessageFor(model => model.Dzial, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="center">
+                                    @Html.DropDownListFor(model => model.AkronimWyk, ViewBag.AkronimWyk as SelectList, new { @class = "form-control select2" })
+                                    @Html.ValidationMessageFor(model => model.AkronimWyk, "", new { @class = "text-danger" })
+                                </td>
+                                <td class="center">
+                                    @Html.TextBox("ImieNazwisko", null, new { @class = "form-control", @type = "text", @readonly = "readonly", @id = "ImieNazwisko" })
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="Cyklicznosc">@Html.DisplayNameFor(model => model.Cyklicznosc)</label>
+                    @Html.TextBoxFor(model => model.Cyklicznosc, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Cyklicznosc, "", new { @class = "text-danger" })
+                </div>
+                @if (Model.CreatedBy != null)
+                {
+                    <div class="form-group">
+                        <label class="col-form-label" for="Stan">@Html.DisplayNameFor(model => model.Stan)</label>
+                        @Html.DropDownListFor(model => model.Stan, ViewBag.Stany as SelectList, new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.Stan, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="Status">@Html.DisplayNameFor(model => model.Status)</label>
+                        @Html.DropDownListFor(model => model.Status, ViewBag.Statusy as SelectList, new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                }
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odrzuć</button>
+        <button type="submit" class="btn btn-primary" value="Submit">Zapisz</button>
+    </div>
+}
+
+<script>
+    $('.select2').select2({
+        dropdownParent: $('#modal-content')
+    });
+</script>
+
+<script src="~/js/Forms/Stanowisko/stanowiskoodpowiedzialnosciform.create.js"></script>
+<script src="~/vendor/jquery-validation/jquery.validate.js"></script>
+<script src="~/vendor/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

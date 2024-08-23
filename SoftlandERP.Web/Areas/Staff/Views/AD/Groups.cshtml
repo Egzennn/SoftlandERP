@@ -1,0 +1,60 @@
+﻿@model GroupsViewModel
+
+<div class="row">
+    <div class="col">
+        <div class="toggle toggle-primary" data-plugin-toggle>
+            @foreach (var group in Model.Organizations)
+            {
+                <section class="toggle">
+                    <label>@group.Name</label>
+                    <div class="toggle-content">
+                        <ul>
+                            @foreach (var member in group.Members)
+                            {
+                                <li>@member</li>
+                            }
+                        </ul>
+                    </div>
+                </section>
+            }
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="toggle toggle-primary" data-plugin-toggle>
+            @foreach (var group in Model.Departments)
+            {
+                <section class="toggle">
+                    <label>@group.Name</label>
+                    <div class="toggle-content">
+                        <ul>
+                            @foreach (var member in group.Members)
+                            {
+                                <li>@member</li>
+                            }
+                        </ul>
+                    </div>
+                </section>
+            }
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="toggle toggle-primary" data-plugin-toggle>
+            @foreach (var group in Model.SubDepartments)
+            {
+                <section class="toggle">
+                    <label>@group.Name</label>
+                    <div class="toggle-content">
+                        <ul>
+                            @foreach (var member in group.Members)
+                            {
+                                <li>@member</li>
+                            }
+                        </ul>
+                    </div>
+                </section>
+            }
+        </div>
+    </div>
+</div>

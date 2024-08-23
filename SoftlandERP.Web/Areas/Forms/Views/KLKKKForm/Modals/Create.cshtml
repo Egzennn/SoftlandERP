@@ -1,0 +1,100 @@
+﻿@model KLKKKForm
+
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="modal-title">@ViewBag.ModalTitle</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+@using (Html.BeginForm("Create", "KLKKKForm", FormMethod.Post, new { @id = "createform", @autocomplete = "off" }))
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Created)
+    @Html.HiddenFor(model => model.CreatedBy)
+    <div class="modal-body">
+        <div class="row">
+            <blockquote class="danger">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IDK, new { @class = "col-form-label" })
+                    @Html.DropDownListFor(model => model.IDK, ViewBag.IDK as SelectList, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.IDK, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TypAkcji, new { @class = "col-form-label" })
+                    @Html.DropDownListFor(model => model.TypAkcji, ViewBag.TypAkcji as SelectList, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.TypAkcji, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Rozmowca, new { @class = "col-form-label" })
+                    @Html.TextBoxFor(model => model.Rozmowca, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Rozmowca, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CelKontaktu, new { @class = "col-form-label" })
+                    @Html.DropDownListFor(model => model.CelKontaktu, ViewBag.CelKontaktu as SelectList, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.CelKontaktu, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Obszar, new { @class = "col-form-label" })
+                    @Html.DropDownListFor(model => model.Obszar, ViewBag.Obszar as SelectList, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.Obszar, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Brand, new { @class = "col-form-label" })
+                    @Html.TextBoxFor(model => model.Brand, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Brand, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Towar, new { @class = "col-form-label" })
+                    @Html.TextBoxFor(model => model.Towar, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Towar, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Opis, new { @class = "col-form-label" })
+                    @Html.TextBoxFor(model => model.Opis, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Opis, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Rekomendacja, new { @class = "col-form-label" })
+                    @Html.TextBoxFor(model => model.Rekomendacja, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Rekomendacja, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Waga, new { @class = "col-form-label" })
+                    @Html.DropDownListFor(model => model.Waga, ViewBag.Waga as SelectList, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.Waga, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SprawyPowiazane, new { @class = "col-form-label" })
+                    @Html.TextBoxFor(model => model.SprawyPowiazane, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SprawyPowiazane, "", new { @class = "text-danger" })
+                </div>
+                @if (Model.CreatedBy != null)
+                {
+                    <div class="form-group">
+                        <label class="col-form-label" for="Stan">@Html.DisplayNameFor(model => model.Stan)</label>
+                        @Html.DropDownListFor(model => model.Stan, ViewBag.Stany as SelectList, new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.Stan, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="Status">@Html.DisplayNameFor(model => model.Status)</label>
+                        @Html.DropDownListFor(model => model.Status, ViewBag.Statusy as SelectList, new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                }
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odrzuć</button>
+        <button type="submit" class="btn btn-primary" value="Submit">Zapisz</button>
+    </div>
+}
+
+<script>
+    $('.select2').select2({
+        dropdownParent: $('#modal-content')
+    });
+</script>
+<script src="~/vendor/jquery-validation/jquery.validate.js"></script>
+<script src="~/vendor/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

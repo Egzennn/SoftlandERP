@@ -1,0 +1,125 @@
+﻿@model PraceZleconeForm
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Create", "PraceZleconeForm", FormMethod.Post, new { @id = "createform", @autocomplete = "off" }))
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Created)
+    @Html.HiddenFor(model => model.CreatedBy)
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <blockquote class="danger">
+                    <div class="form-group">
+                        <label class="col-form-label" for="Dzial">@Html.DisplayNameFor(model => model.Dzial)</label>
+                        @Html.DropDownListFor(model => model.Dzial, ViewBag.Dzial as SelectList, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Dzial, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="IDS">@Html.DisplayNameFor(model => model.IDS)</label>
+                        @Html.TextBoxFor(model => model.IDS, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IDS, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="Dokument">@Html.DisplayNameFor(model => model.Dokument)</label>
+                        @Html.DropDownListFor(model => model.Dokument, ViewBag.Dokument as SelectList, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Dokument, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="KategoriaPracy">@Html.DisplayNameFor(model => model.KategoriaPracy)</label>
+                        @Html.DropDownListFor(model => model.KategoriaPracy, ViewBag.KategoriaPracy as SelectList, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.KategoriaPracy, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="RodzajPracy">@Html.DisplayNameFor(model => model.RodzajPracy)</label>
+                        @Html.DropDownListFor(model => model.RodzajPracy, ViewBag.RodzajPracy as SelectList, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.RodzajPracy, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="NazwaReceptury">@Html.DisplayNameFor(model => model.NazwaReceptury)</label>
+                        @Html.DropDownListFor(model => model.NazwaReceptury, ViewBag.NazwaReceptury as SelectList, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.NazwaReceptury, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="IloscPobrana">@Html.DisplayNameFor(model => model.IloscPobrana)</label>
+                        @Html.TextBoxFor(model => model.IloscPobrana, new { @class = "form-control" ,@placeholder = "0"})
+                        @Html.ValidationMessageFor(model => model.IloscPobrana, "", new { @class = "text-danger" })
+                    </div>
+                    @if (Model.CreatedBy != null)
+                    {
+                        <div class="form-group">
+                            <label class="col-form-label" for="IloscWykonana">@Html.DisplayNameFor(model => model.IloscWykonana)</label>
+                            @Html.TextBoxFor(model => model.IloscWykonana, new { @class = "form-control" ,@placeholder = "0" })
+                            @Html.ValidationMessageFor(model => model.IloscWykonana, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                    <div class="form-group">
+                        <table>
+                            <thead>
+                                <tr role="row">
+                                    <th class="center">@Html.DisplayNameFor(model => model.AkronimWyk)</th>
+                                    <th class="center">Imię i Nazwisko</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr role="row">
+                                    <td class="center">
+                                        @Html.DropDownListFor(model => model.AkronimWyk, ViewBag.AkronimWyk as SelectList, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.AkronimWyk, "", new { @class = "text-danger" })
+                                    </td>
+                                    <td class="center">
+                                        @Html.TextBox("ImieNazwisko", null, new { @class = "form-control", @type = "text", @readonly = "readonly", @id = "ImieNazwisko" })
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="WydanieZlecenia">@Html.DisplayNameFor(model => model.WydanieZlecenia)</label>
+                        @Html.TextBoxFor(model => model.WydanieZlecenia, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local" })
+                        @Html.ValidationMessageFor(model => model.WydanieZlecenia, "", new { @class = "text-danger" })
+                    </div>
+                    @if (Model.CreatedBy != null)
+                    {
+                        <div class="form-group">
+                            <label class="col-form-label" for="PrzyjecieZlecenia">@Html.DisplayNameFor(model => model.PrzyjecieZlecenia)</label>
+                            @Html.TextBoxFor(model => model.PrzyjecieZlecenia, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local" })
+                            @Html.ValidationMessageFor(model => model.PrzyjecieZlecenia, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="CzasWykonania">@Html.DisplayNameFor(model => model.CzasWykonania)</label>
+                            @Html.TextBoxFor(model => model.CzasWykonania, new { @class = "form-control", @readonly = "readonly", @type="text", formnovalidate="formnovalidate"})
+                            @Html.ValidationMessageFor(model => model.CzasWykonania, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="WartoscPracyZleconej">@Html.DisplayNameFor(model => model.WartoscPracyZleconej)</label>
+                            @Html.TextBoxFor(model => model.WartoscPracyZleconej, new { @class = "form-control", @readonly = "readonly"})
+                            @Html.ValidationMessageFor(model => model.WartoscPracyZleconej, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="Stan">@Html.DisplayNameFor(model => model.Stan)</label>
+                            @Html.DropDownListFor(model => model.Stan, ViewBag.Stany as SelectList, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Stan, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="Status">@Html.DisplayNameFor(model => model.Status)</label>
+                            @Html.DropDownListFor(model => model.Status, ViewBag.Statusy as SelectList, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                </blockquote>
+                <div class="float-end">
+                    <button type="button" class="btn btn-secondary" onclick="window.history.back()">Odrzuć</button>
+                    <button type="submit" class="btn btn-primary" value="Submit">Zapisz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+@section Scripts {
+    <script src="~/js/Forms/pracezleconeform.create.js"></script>
+}

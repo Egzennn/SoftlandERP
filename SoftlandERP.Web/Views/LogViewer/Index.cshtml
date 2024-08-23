@@ -1,0 +1,29 @@
+﻿@model List<string>
+
+@{
+    ViewBag.Title = "Logi";
+}
+
+<div class="row">
+    <table class="table table-bordered" id="datatable">
+        <thead>
+            <tr>
+                <th>Czas</th>
+                <th>Poziom</th>
+                <th>Kontekst źródła</th>
+                <th>Wiadomość</th>
+                <th>Wyjątek</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var logEntry in Model)
+            {
+                @Html.Raw(logEntry) <!-- Każdy log jako osobny wiersz HTML -->
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="~/js/logs.index.js"></script>
+}

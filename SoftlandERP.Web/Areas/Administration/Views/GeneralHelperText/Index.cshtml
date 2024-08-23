@@ -1,0 +1,60 @@
+﻿@model IEnumerable<HelperText>
+
+@{
+    int index = 0;
+}
+
+<div class="row">
+    <table class="table-responsive table-bordered table-striped mb-0" id="datatable">
+        <thead>
+            <tr>
+                <th class="center">#</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Entity)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.FieldName)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.FieldDisplayName)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.FieldHelperText)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Updated)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.UpdatedBy)</th>
+                @if (ViewBag.IsAdmin)
+                {
+                    <th></th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var helperText in Model)
+                {
+                    <tr>
+                        <td class="center">@(++index)</td>
+                        <td class="center">@Html.DisplayFor(u => helperText.Entity)</td>
+                        <td class="center">@Html.DisplayFor(u => helperText.FieldName)</td>
+                        <td class="center">@Html.DisplayFor(u => helperText.FieldDisplayName)</td>
+                        <td class="center">@Html.DisplayFor(u => helperText.FieldHelperText)</td>
+                        <td class="center">@Html.DisplayFor(u => helperText.Updated)</td>
+                        <td class="center">@Html.DisplayFor(u => helperText.UpdatedBy)</td>
+                        @if (ViewBag.IsAdmin)
+                        {
+                            <td>
+                                <div class="btn-group flex-wrap">
+                                    <button type="button" class="btn btn-xs btn-outline-danger" id="modify-button" data-id="@helperText.Id"><i class="fas fa-pencil-alt"></i></button>
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="modal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="modal-content">
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Administration/Vocabularies/General/helpertext.index.js"></script>
+}

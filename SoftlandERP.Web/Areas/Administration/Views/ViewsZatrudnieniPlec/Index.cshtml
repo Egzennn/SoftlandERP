@@ -1,0 +1,29 @@
+﻿@model IEnumerable<string>
+
+@{
+    int index = 0;
+}
+
+<div>
+    <table class="table-responsive table-bordered table-striped mb-0" id="view-datatable">
+        <thead>
+            <tr>
+                <th class="center">#</th>
+                <th class="center">Płeć</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var gender in Model)
+            {
+                <tr>
+                    <td class="center">@(++index)</td>
+                    <td class="center">@gender</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="~/js/Administration/Views/index.js"></script>
+}

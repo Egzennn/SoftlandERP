@@ -1,0 +1,81 @@
+﻿@model CreateSpedycjaStandardyPrzygotowaniaModel
+
+@using (Html.BeginForm("Create", "FormsSpedycjaStandardyPrzygotowania", FormMethod.Post, new { @id = "createform", @autocomplete = "off" }))
+{
+    @Html.HiddenFor(model => model.SpedycjaStandardyPrzygotowania.Id)
+    @Html.HiddenFor(model => model.SpedycjaStandardyPrzygotowania.Created)
+    @Html.HiddenFor(model => model.SpedycjaStandardyPrzygotowania.CreatedBy)
+    <div class="row pb-3">
+        <div class="col-md-6">
+            <div style="overflow-y: auto;">
+                <blockquote class="danger">
+                    <div class="form-group">
+                        <label class="col-form-label" for="AkronimLog">@Html.DisplayNameFor(model => model.SpedycjaStandardyPrzygotowania.AkronimLog)</label>
+                        @Html.DropDownListFor(model => model.SpedycjaStandardyPrzygotowania.AkronimLog, ViewBag.CzynnosciMagazynowoSpedycyjneLog as SelectList, new { @class = "form-control", required="required" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="AkronimMag">@Html.DisplayNameFor(model => model.SpedycjaStandardyPrzygotowania.AkronimMag)</label>
+                        @Html.DropDownListFor(model => model.SpedycjaStandardyPrzygotowania.AkronimMag, ViewBag.CzynnosciMagazynowoSpedycyjneMag as SelectList, new { @class = "form-control", required="required" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="Czas">@Html.DisplayNameFor(model => model.SpedycjaStandardyPrzygotowania.Czas)</label>
+                        @Html.TextBoxFor(model => model.SpedycjaStandardyPrzygotowania.Czas, new { @class = "form-control", required="required" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="Odpowiedzialny">@Html.DisplayNameFor(model => model.SpedycjaStandardyPrzygotowania.Odpowiedzialny)</label>
+                        @Html.DropDownListFor(model => model.SpedycjaStandardyPrzygotowania.Odpowiedzialny,ViewBag.Odpowiedzialny as SelectList, new { @class = "form-control"})
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="Stan">@Html.DisplayNameFor(model => model.SpedycjaStandardyPrzygotowania.Stan)</label>
+                        @if (ViewBag.Stany != null)
+                        {
+                            @Html.DropDownListFor(model => model.SpedycjaStandardyPrzygotowania.Stan, ViewBag.Stany as SelectList, new { @class = "form-control" })
+                        }
+                        else
+                        {
+                            @Html.EditorFor(model => model.SpedycjaStandardyPrzygotowania.Stan, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @placeholder = "Plan" } })
+                        }
+                    </div>
+                </blockquote>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-striped" id="akronimLogTable">
+                <thead>
+                    <tr>
+                        <th colspan="6">Opis wybranego LOG</th>
+                    </tr>
+                    <tr role="row">
+                        <th class="center">@Html.DisplayNameFor(model => model.SpedycjaCzynnosciMagazynowoSpedycyjneLog.Akronim)</th>
+                        <th class="center">@Html.DisplayNameFor(model => model.SpedycjaCzynnosciMagazynowoSpedycyjneLog.Czynnosc)</th>
+                        <th class="center">@Html.DisplayNameFor(model => model.SpedycjaCzynnosciMagazynowoSpedycyjneLog.RodzajPrac)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <table class="table table-striped" id="akronimMagTable">
+                <thead>
+                    <tr>
+                        <th colspan="6">Opis wybranego MAG</th>
+                    </tr>
+                    <tr role="row">
+                        <th class="center">@Html.DisplayNameFor(model => model.SpedycjaCzynnosciMagazynowoSpedycyjneMag.Akronim)</th>
+                        <th class="center">@Html.DisplayNameFor(model => model.SpedycjaCzynnosciMagazynowoSpedycyjneMag.Czynnosc)</th>
+                        <th class="center">@Html.DisplayNameFor(model => model.SpedycjaCzynnosciMagazynowoSpedycyjneMag.RodzajPrac)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="float-end">
+        <button type="button" class="btn btn-secondary" onclick="window.history.back()">Wróć</button>
+        <button type="submit" class="btn btn-primary" value="Submit">Zapisz</button>
+    </div>
+}
+
+@section Scripts {
+    <script src="~/js/Administration/Vocabularies/Forms/Spedycja/standardyprzygotowania.create.js"></script>
+}

@@ -1,0 +1,120 @@
+﻿@model IEnumerable<StanowiskoOdpowiedzialnosciForm>
+
+<div class="modal fade" id="modal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content" id="modal-content">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <table class="table-responsive table-bordered table-striped mb-0" id="datatable">
+        <thead>
+            <tr role="row">
+                <th class="center">@Html.DisplayNameFor(model => model.DataRozpoczecia)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.DataZakonczenia)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.LiczbaInterwalow)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Interwal)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Przesuniecie)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Dni)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Symbol)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.KluczPrzydzialu)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Lokalizacja)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Dzial)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.AkronimWyk)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Cyklicznosc)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Created)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.CreatedBy)</th>
+                <th hidden class="center">@Html.DisplayNameFor(model => model.Updated)</th>
+                <th hidden class="center">@Html.DisplayNameFor(model => model.UpdatedBy)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Stan)</th>
+                <th hidden class="center">@Html.DisplayNameFor(model => model.Status)</th>
+                <th class="center">Akcja</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var form in Model)
+            {
+                <tr>
+                    <td class="center">@Html.DisplayFor(u => form.DataRozpoczecia)</td>
+                    <td class="center">@Html.DisplayFor(u => form.DataZakonczenia)</td>
+                    <td class="center">@Html.DisplayFor(u => form.LiczbaInterwalow)</td>
+                    <td class="center">@Html.DisplayFor(u => form.Interwal)</td>
+                    <td class="center">@Html.DisplayFor(u => form.Przesuniecie)</td>
+                    <td class="center">@Html.DisplayFor(u => form.Dni)</td>
+                    <td class="center">@Html.DisplayFor(u => form.Symbol)</td>
+                    <td class="center">@Html.DisplayFor(u => form.KluczPrzydzialu)</td>
+                    <td class="center">@Html.DisplayFor(u => form.Lokalizacja)</td>
+                    <td class="center">@Html.DisplayFor(u => form.Dzial)</td>
+                    <td class="center">@Html.DisplayFor(u => form.AkronimWyk)</td>
+                    <td class="center">@Html.DisplayFor(u => form.Cyklicznosc)</td>
+                    <td class="center">@Html.DisplayFor(u => form.Created)</td>
+                    <td class="center">@Html.DisplayFor(u => form.CreatedBy)</td>
+                    <td hidden class="center">@Html.DisplayFor(u => form.Updated)</td>
+                    <td hidden class="center">@Html.DisplayFor(u => form.UpdatedBy)</td>
+                    <td class="center">
+                        @switch (form.Stan)
+                        {
+                            case "Aktywny":
+                                <span class="badge badge-success">@Html.DisplayFor(u => form.Stan)</span>
+                                break;
+                            case "Realizacja":
+                                <span class="badge badge-warning">@Html.DisplayFor(u => form.Stan)</span>
+                                break;
+                            case "Przekazany":
+                                <span class="badge badge-default">@Html.DisplayFor(u => form.Stan)</span>
+                                break;
+                            case "Plan":
+                                <span class="badge badge-info">@Html.DisplayFor(u => form.Stan)</span>
+                                break;
+                            default:
+                                <span class="badge badge-danger">@Html.DisplayFor(u => form.Stan)</span>
+                                break;
+                        }
+                    </td>
+                    <td hidden class="center">
+                        @switch (form.Status)
+                        {
+                            case "Akceptacja":
+                                <span class="badge badge-success">@Html.DisplayFor(u => form.Status)</span>
+                                break;
+                            case "Plan":
+                                <span class="badge badge-info">@Html.DisplayFor(u => form.Status)</span>
+                                break;
+                            default:
+                                <span class="badge badge-danger">@Html.DisplayFor(u => form.Status)</span>
+                                break;
+                        }
+                    </td>
+                    <td>
+                        <div class="btn-group btn-sm">
+                            @if (ViewBag.IsIT)
+                            {
+                                <button type="button" class="btn btn-xs btn-outline-danger" id="modify-button" data-id="@form.Id"><i class="fas fa-pencil-alt"></i></button>
+                                <button type="button" class="btn btn-xs btn-outline-danger" id="clone-button" data-id="@form.Id"><i class="fa-solid fa-clone"></i></button>
+                                <button type="button" class="btn btn-xs btn-outline-danger" id="delete-button" data-id="@form.Id"><i class="fa-regular fa-trash-can"></i></button>
+                            }
+                            else
+                            {
+                                @if (form.Stan != "Archiwalny")
+                                {
+                                    <button type="button" class="btn btn-xs btn-outline-danger" id="modify-button" data-id="@form.Id"><i class="fas fa-pencil-alt"></i></button>
+                                    <button type="button" class="btn btn-xs btn-outline-danger" id="clone-button" data-id="@form.Id"><i class="fa-solid fa-clone"></i></button>
+                                }
+                                else
+                                {
+                                    <button disabled type="button" class="btn btn-xs btn-outline-danger" id="modify-button" data-id="@form.Id"><i class="fas fa-pencil-alt"></i></button>
+                                    <button disabled type="button" class="btn btn-xs btn-outline-danger" id="clone-button" data-id="@form.Id"><i class="fa-solid fa-clone"></i></button>
+                                }
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="~/js/Forms/Stanowisko/stanowiskoodpowiedzialnosciform.index.js"></script>
+}

@@ -1,0 +1,28 @@
+﻿@model HelperText
+
+
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="modal-title">@ViewBag.ModalTitle</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+@using (Html.BeginForm("Update", "GeneralHelperText", FormMethod.Post))
+{
+    <div class="modal-body">
+        <blockquote class="danger">
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.Entity)
+            @Html.HiddenFor(model => model.FieldName)
+            @Html.HiddenFor(model => model.FieldDisplayName)
+            @Html.HiddenFor(model => model.Created)
+            @Html.HiddenFor(model => model.CreatedBy)
+            <div class="form-group">
+                <label class="col-form-label" for="FieldHelperText">@Html.DisplayNameFor(model => model.FieldHelperText)</label>
+                @Html.TextBoxFor(model => model.FieldHelperText, new { @class = "form-control" })
+            </div>
+        </blockquote>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odrzuć</button>
+        <button type="submit" class="btn btn-primary" value="Submit">Zapisz</button>
+    </div>
+}

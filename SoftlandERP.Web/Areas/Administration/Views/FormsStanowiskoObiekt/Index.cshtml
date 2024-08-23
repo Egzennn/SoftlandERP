@@ -1,0 +1,106 @@
+﻿@model IEnumerable<StanowiskoObiekt>
+
+<div class="row">
+    <table class="table-responsive table-bordered table-striped mb-0" id="datatable">
+        <thead>
+            <tr>
+                <th class="center">@Html.DisplayNameFor(model => model.Wartosc)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Odpowiedzialny)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Created)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.CreatedBy)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Updated)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.UpdatedBy)</th>
+                <th class="center">@Html.DisplayNameFor(model => model.Stan)</th>
+                <th class="center">Akcja</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="center">@Html.DisplayFor(u => item.Wartosc)</td>
+                    <td class="center">@Html.DisplayFor(u => item.Odpowiedzialny)</td>
+                    <td class="center">@Html.DisplayFor(u => item.Created)</td>
+                    <td class="center">@Html.DisplayFor(u => item.CreatedBy)</td>
+                    <td class="center">@Html.DisplayFor(u => item.UpdatedBy)</td>
+                    <td class="center">@Html.DisplayFor(u => item.Updated)</td>
+                    <td class="center">
+                        @switch (item.Stan)
+                        {
+                            case "Aktywny":
+                                <span class="badge badge-success">@Html.DisplayFor(u => item.Stan)</span>
+                                break;
+                            case "Realizacja":
+                                <span class="badge badge-warning">@Html.DisplayFor(u => item.Stan)</span>
+                                break;
+                            case "Przekazany":
+                                <span class="badge badge-default">@Html.DisplayFor(u => item.Stan)</span>
+                                break;
+                            case "Plan":
+                                <span class="badge badge-info">@Html.DisplayFor(u => item.Stan)</span>
+                                break;
+                            default:
+                                <span class="badge badge-danger">@Html.DisplayFor(u => item.Stan)</span>
+                                break;
+                        }
+                    </td>
+                    <td>
+                        <div class="btn-group flex-wrap">
+                            @if (ViewBag.IsIT)
+                            {
+                                <button type="button" class="btn btn-xs btn-outline-danger" id="modify-button" data-id="@item.Id"><i class="fas fa-pencil-alt"></i></button>
+                                <button type="button" class="btn btn-xs btn-outline-danger" id="delete-button" data-id="@item.Id"><i class="fa-regular fa-trash-can"></i></button>
+                            }
+                            else
+                            {
+                                @if (item.Odpowiedzialny == item.CreatedBy)
+                                {
+                                    <button type="button" class="btn btn-xs btn-outline-danger" id="modify-button" data-id="@item.Id"><i class="fas fa-pencil-alt"></i></button>
+                                }
+                                else
+                                {
+                                    <button disabled type="button" class="btn btn-xs btn-outline-danger" id="modify-button" data-id="@item.Id"><i class="fas fa-pencil-alt"></i></button>
+                                }
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (ViewBag.IsIT)
+    {
+        <div class="btn-group flex-wrap">
+            <form method="post" action="/Administration/FormsStanowiskoObiekt/AktualizujOdpowiedzialnego">
+                <table class="table table-bordered table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th colspan="2">Aktualizacja wszystkich wierszy Odpowiedzialny</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DropDownList("OdpowiedzialnySelectList", ViewBag.Odpowiedzialny as SelectList, new { @class = "form-control" })
+                            </td>
+                            <td class="text-center">
+                                <button type="submit" class="btn btn-outline-danger">Aktualizuj</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    }
+</div>
+
+<div class="modal fade" id="modal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="modal-content">
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Administration/Vocabularies/Forms/Stanowisko/obiekt.index.js"></script>
+}

@@ -1,0 +1,100 @@
+﻿@model KLKartaForm
+
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="modal-title">@ViewBag.ModalTitle</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+@using (Html.BeginForm("Create", "KLKartaForm", FormMethod.Post, new { @id = "createform", @autocomplete = "off" }))
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Created)
+    @Html.HiddenFor(model => model.CreatedBy)
+    <div class="modal-body">
+        <div class="row">
+            <blockquote class="danger">
+                <div class="form-group">
+                    <label class="col-form-label" for="IDK">@Html.DisplayNameFor(model => model.IDK)</label>
+                    @Html.DropDownListFor(model => model.IDK, ViewBag.IDK as SelectList, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.IDK, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="NIP">@Html.DisplayNameFor(model => model.NIP)</label>
+                    @Html.TextBoxFor(model => model.NIP, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NIP, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="Nazwa">@Html.DisplayNameFor(model => model.Nazwa)</label>
+                    @Html.TextBoxFor(model => model.Nazwa, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Nazwa, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="Rynek">@Html.DisplayNameFor(model => model.Rynek)</label>
+                    @Html.DropDownListFor(model => model.Rynek, ViewBag.Rynek as SelectList, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.Rynek, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="Kraj">@Html.DisplayNameFor(model => model.Kraj)</label>
+                    @Html.DropDownListFor(model => model.Kraj, ViewBag.TwoLetterISORegionName as SelectList, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.Kraj, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="Grupa">@Html.DisplayNameFor(model => model.Grupa)</label>
+                    @Html.DropDownListFor(model => model.Grupa, this.ViewBag.Grupa as SelectList, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.Grupa, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="ABC">@Html.DisplayNameFor(model => model.ABC)</label>
+                    @Html.DropDownListFor(model => model.ABC, ViewBag.ABC as SelectList, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.ABC, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="CyklObslugi">@Html.DisplayNameFor(model => model.CyklObslugi)</label>
+                    @Html.TextBoxFor(model => model.CyklObslugi, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CyklObslugi, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="Opiekun">@Html.DisplayNameFor(model => model.Opiekun)</label>
+                    @Html.DropDownListFor(model => model.Opiekun, ViewBag.Opiekun as SelectList, new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.Opiekun, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="Email">@Html.DisplayNameFor(model => model.Email)</label>
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="Uwagi">@Html.DisplayNameFor(model => model.Uwagi)</label>
+                    @Html.TextBoxFor(model => model.Uwagi, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Uwagi, "", new { @class = "text-danger" })
+                </div>
+                @if (Model.CreatedBy != null)
+                {
+                    <div class="form-group">
+                        <label class="col-form-label" for="Stan">@Html.DisplayNameFor(model => model.Stan)</label>
+                        @Html.DropDownListFor(model => model.Stan, ViewBag.Stany as SelectList, new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.Stan, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="Status">@Html.DisplayNameFor(model => model.Status)</label>
+                        @Html.DropDownListFor(model => model.Status, ViewBag.Statusy as SelectList, new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                }
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odrzuć</button>
+        <button type="submit" class="btn btn-primary" value="Submit">Zapisz</button>
+    </div>
+}
+
+<script>
+    $('.select2').select2({
+        dropdownParent: $('#modal-content')
+    });
+</script>
+<script src="~/vendor/jquery-validation/jquery.validate.js"></script>
+<script src="~/vendor/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

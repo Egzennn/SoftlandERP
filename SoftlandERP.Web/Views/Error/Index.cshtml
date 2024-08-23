@@ -1,0 +1,37 @@
+﻿@{
+    Layout = null;
+}
+
+<!doctype html>
+<html class="fixed dark" lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title | Softland ERP</title>
+    <meta name="description" content="System zarządzania firmą Softland sp. z o.o.">
+    <meta name="author" content="Vitalii Hromyk">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="~/vendor/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/vendor/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/theme.css" />
+    <link rel="stylesheet" href="~/css/skins/default.css" />
+    <link rel="stylesheet" href="~/css/custom.css">
+
+    <script src="~/vendor/modernizr/modernizr.js"></script>
+</head>
+<body>
+    <section class="body-error error-outside">
+        <div class="center-error">
+            <div class="row">
+                <div class="main-error mb-3">
+                    <h2 class="error-code text-dark text-center font-weight-semibold m-0">@ViewBag.ErrorCode <i class="fas fa-file"></i></h2>
+                    <p class="error-explanation text-center">@ViewBag.ErrorDescription</p>
+                </div>
+                <button type="button" onclick="location.href='@Url.Action("Index","Home")'" class=" mb-1 mt-1 me-1 btn btn-outline-danger"> <i class="fa-solid fa-house"></i> Wróć na stronę główną</button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

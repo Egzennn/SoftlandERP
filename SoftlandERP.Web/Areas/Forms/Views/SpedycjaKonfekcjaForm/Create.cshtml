@@ -1,0 +1,117 @@
+﻿@model CreateSpedycjaKonfekcjaModel
+
+@using (Html.BeginForm("Create", "SpedycjaKonfekcjaForm", FormMethod.Post, new { @id = "createform", @autocomplete = "off" }))
+{
+    @Html.HiddenFor(model => model.SpedycjaKonfekcjaForm.Id)
+    @Html.HiddenFor(model => model.SpedycjaKonfekcjaForm.Created)
+    @Html.HiddenFor(model => model.SpedycjaKonfekcjaForm.CreatedBy)
+    <div class="row pb-3">
+        <div class="col-md-6">
+            <div style="overflow-y: auto;">
+                <blockquote class="danger">
+                    <div class="form-group">
+                        <label class="col-form-label">@Html.DisplayNameFor(model => model.SpedycjaKonfekcjaForm.AkronimLog)</label>
+                        @Html.DropDownListFor(model => model.SpedycjaKonfekcjaForm.AkronimLog, ViewBag.AkronimLog as SelectList, new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.SpedycjaKonfekcjaForm.AkronimLog, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">@Html.DisplayNameFor(model => model.SpedycjaKonfekcjaForm.Sekcja)</label>
+                        @Html.DropDownListFor(model => model.SpedycjaKonfekcjaForm.Sekcja, ViewBag.Sekcja as SelectList, new { @class = "form-control select2"})
+                        @Html.ValidationMessageFor(model => model.SpedycjaKonfekcjaForm.Sekcja, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">@Html.DisplayNameFor(model => model.SpedycjaKonfekcjaForm.Towar)</label>
+                        @Html.DropDownListFor(model => model.SpedycjaKonfekcjaForm.Towar, ViewBag.Towar as SelectList, new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.SpedycjaKonfekcjaForm.Towar, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <table>
+                            <thead>
+                                <tr role="row">
+                                    <th class="center">@Html.DisplayNameFor(model => model.SpedycjaKonfekcjaForm.IloscMagazynowa)</th>
+                                    <th class="center">@Html.DisplayNameFor(model => model.SpedycjaKonfekcjaForm.Suma_Sprzedazy)</th>
+                                    <th class="center">@Html.DisplayNameFor(model => model.SpedycjaKonfekcjaForm.Min_Ilosc)</th>
+                                    <th class="center">@Html.DisplayNameFor(model => model.SpedycjaKonfekcjaForm.Max_Ilosc)</th>
+                                    <th class="center">@Html.DisplayNameFor(model => model.SpedycjaKonfekcjaForm.IloscZlecenia)</th>
+                                    <th class="center">@Html.DisplayNameFor(model => model.SpedycjaKonfekcjaForm.Czas)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr role="row">
+                                    <td class="center">
+                                        @Html.TextBoxFor(model => model.SpedycjaKonfekcjaForm.IloscMagazynowa, new { @class = "form-control", @readonly = "readonly", formnovalidate="formnovalidate"})
+                                    </td>
+                                    <td class="center">
+                                        @Html.TextBoxFor(model => model.SpedycjaKonfekcjaForm.Suma_Sprzedazy, new { @class = "form-control", @readonly = "readonly", formnovalidate="formnovalidate"})
+                                    </td>
+                                    <td class="center">
+                                        @Html.TextBoxFor(model => model.SpedycjaKonfekcjaForm.Min_Ilosc, new { @class = "form-control", @readonly = "readonly", formnovalidate="formnovalidate"})
+                                    </td>
+                                    <td class="center">
+                                        @Html.TextBoxFor(model => model.SpedycjaKonfekcjaForm.Max_Ilosc, new { @class = "form-control", @readonly = "readonly", formnovalidate="formnovalidate"})
+                                    </td>
+                                    <td class="center">
+                                        @Html.TextBoxFor(model => model.SpedycjaKonfekcjaForm.IloscZlecenia, new { @class = "form-control", @placeholder = "0" })
+                                        @Html.ValidationMessageFor(model => model.SpedycjaKonfekcjaForm.IloscZlecenia, "", new { @class = "text-danger" })
+                                    </td>
+                                    <td class="center">
+                                        @Html.TextBoxFor(model => model.SpedycjaKonfekcjaForm.Czas, new { @class = "form-control", @readonly = "readonly", @type="text", formnovalidate="formnovalidate"})
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    @if (Model.SpedycjaKonfekcjaForm.CreatedBy != null)
+                    {
+                        <div class="form-group">
+                            <label class="col-form-label">@Html.DisplayNameFor(model => model.SpedycjaKonfekcjaForm.AkronimWyk)</label>
+                            @Html.DropDownListFor(model => model.SpedycjaKonfekcjaForm.AkronimWyk,ViewBag.AkronimWyk as SelectList, new { @class = "form-control select2"})
+                            @Html.ValidationMessageFor(model => model.SpedycjaKonfekcjaForm.AkronimWyk, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="Stan">@Html.DisplayNameFor(model => model.SpedycjaKonfekcjaForm.Stan)</label>
+                            @Html.DropDownListFor(model => model.SpedycjaKonfekcjaForm.Stan, ViewBag.Stany as SelectList, new { @class = "form-control select2" })
+                            @Html.ValidationMessageFor(model => model.SpedycjaKonfekcjaForm.Stan, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="Status">@Html.DisplayNameFor(model => model.SpedycjaKonfekcjaForm.Status)</label>
+                            @Html.DropDownListFor(model => model.SpedycjaKonfekcjaForm.Status, ViewBag.Statusy as SelectList, new { @class = "form-control select2" })
+                            @Html.ValidationMessageFor(model => model.SpedycjaKonfekcjaForm.Status, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                </blockquote>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-striped" id="akronimMagTable">
+                <thead>
+                    <tr>
+                        <th colspan="6">Opis wybranego LOG</th>
+                    </tr>
+                    <tr role="row">
+                        <th class="center">@Html.DisplayNameFor(model => model.SpedycjaCzynnosciMagazynowoSpedycyjneMag.Akronim)</th>
+                        <th class="center">@Html.DisplayNameFor(model => model.SpedycjaCzynnosciMagazynowoSpedycyjneMag.Czynnosc)</th>
+                        <th class="center">@Html.DisplayNameFor(model => model.SpedycjaCzynnosciMagazynowoSpedycyjneMag.RodzajPrac)</th>
+                        <th class="center">@Html.DisplayNameFor(model => model.SpedycjaCzynnosciMagazynowoSpedycyjneMag.Opis)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="float-end">
+        <button type="button" class="mb-1 mt-1 me-1 btn btn-secondary btn-lg btn-block" style="width: 200px" onclick="window.history.back()">Wróć</button>
+        <button type="submit" class="mb-1 mt-1 me-1 btn btn-primary btn-lg btn-block" style="width: 200px" value="Submit">Zapisz</button>
+    </div>
+}
+
+
+@section Scripts {
+    <script src="~/js/Forms/Spedycja/spedycjakonfekcjaform.create.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".select2").select2();
+        });
+    </script>
+}

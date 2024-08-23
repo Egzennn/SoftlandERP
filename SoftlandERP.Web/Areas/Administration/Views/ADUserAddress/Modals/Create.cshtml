@@ -1,0 +1,50 @@
+﻿@model UserAddressCreateModel
+
+
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="modal-title">@ViewBag.ModalTitle</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+@using (Html.BeginForm("Create", "ADUserAddress", FormMethod.Post, new { @id = "createform" }))
+{
+    @Html.HiddenFor(model => model.UserAddress.Id)
+    @Html.HiddenFor(model => model.UserAddress.TwoLetterISOCountryName)
+    @Html.HiddenFor(model => model.UserAddress.Created)
+    @Html.HiddenFor(model => model.UserAddress.CreatedBy)
+    <div class="modal-body">
+        <blockquote class="danger">
+            <div class="form-group">
+                <label class="col-form-label" for="UserAddress.Country">@Html.DisplayNameFor(model => model.UserAddress.Country)</label>
+                @Html.DropDownListFor(model => model.UserAddress.Country, new SelectList(Model.CountryList), new { @class = "form-control" })
+                @try
+                {
+                    <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "UserAddress" && x.FieldName == "Country").FirstOrDefault()?.FieldHelperText</div>
+                }
+                catch { }
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="UserAddress.City">@Html.DisplayNameFor(model => model.UserAddress.City)</label>
+                @Html.TextBoxFor(model => model.UserAddress.City, new { @class = "form-control", required="required" })
+                @try
+                {
+                    <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "UserAddress" && x.FieldName == "City").FirstOrDefault()?.FieldHelperText</div>
+                }
+                catch { }
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="UserAddress.Street">@Html.DisplayNameFor(model => model.UserAddress.Street)</label>
+                @Html.TextBoxFor(model => model.UserAddress.Street, new { @class = "form-control", required="required" })
+                @try
+                {
+                    <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "UserAddress" && x.FieldName == "Street").FirstOrDefault()?.FieldHelperText</div>
+                }
+                catch { }
+            </div>
+        </blockquote>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odrzuć</button>
+        <button type="submit" class="btn btn-primary" value="Submit">Zapisz</button>
+    </div>
+}

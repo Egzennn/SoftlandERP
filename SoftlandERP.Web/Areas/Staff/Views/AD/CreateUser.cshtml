@@ -1,0 +1,412 @@
+﻿@model CreateUserModel
+
+@{
+    var countries = Model.UserAddresess.Select(x => x.Country).Distinct();
+}
+
+@using (Html.BeginForm("CreateUser", "AD", FormMethod.Post, new { @id = "createform" }))
+{
+    @Html.HiddenFor(model => model.ADUser.Id)
+    <div class="row pb-3">
+        <div class="col-3">
+            <div class="form-group">
+                <label class="col-form-label" for="ADUser.FirstName">@Html.DisplayNameFor(model => model.ADUser.FirstName)</label>
+                @if (!ViewBag.IsShow)
+                {
+                    @Html.TextBoxFor(model => model.ADUser.FirstName, new { @class = "form-control"  })
+                    try
+                    {
+                        <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "ADUser" && x.FieldName == "FirstName").FirstOrDefault()?.FieldHelperText</div>
+                    }
+                    catch { }
+
+                    @Html.ValidationMessageFor(model => model.ADUser.FirstName, "", new { @class = "text-danger" })
+                }
+                else
+                {
+                    @Html.TextBoxFor(model => model.ADUser.FirstName, new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" })
+                }
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                <label class="col-form-label" for="ADUser.LastName">@Html.DisplayNameFor(model => model.ADUser.LastName)</label>
+                @if (!ViewBag.IsShow)
+                {
+                    @Html.TextBoxFor(model => model.ADUser.LastName, new { @class = "form-control" })
+                    try
+                    {
+                        <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "ADUser" && x.FieldName == "LastName").FirstOrDefault()?.FieldHelperText</div>
+                    }
+                    catch { }
+                    @Html.ValidationMessageFor(model => model.ADUser.LastName, "", new { @class = "text-danger" })
+                }
+                else
+                {
+                    @Html.TextBoxFor(model => model.ADUser.LastName, new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" })
+                }
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                <label class="col-form-label" for="ADUser.EmailAddress">@Html.DisplayNameFor(model => model.ADUser.EmailAddress)</label>
+                @if (!ViewBag.IsShow)
+                {
+                    @Html.TextBoxFor(model => model.ADUser.EmailAddress, new { @class = "form-control" })
+                    try
+                    {
+                        <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "ADUser" && x.FieldName == "EmailAddress").FirstOrDefault()?.FieldHelperText</div>
+                    }
+                    catch { }
+                    @Html.ValidationMessageFor(model => model.ADUser.EmailAddress, "", new { @class = "text-danger" })
+                }
+                else
+                {
+                    @Html.TextBoxFor(model => model.ADUser.EmailAddress, new {  @class = "form-control", @disabled = "disabled", @readonly = "readonly" })
+                }
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="form-group">
+                <label class="col-form-label" for="ADUser.Login">@Html.DisplayNameFor(model => model.ADUser.Login)</label>
+                @if (!ViewBag.IsShow && Model.ADUser.Id == null)
+                {
+                    @Html.TextBoxFor(model => model.ADUser.Login, new { @class = "form-control" })
+                    try
+                    {
+                        <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "ADUser" && x.FieldName == "Login").FirstOrDefault()?.FieldHelperText</div>
+                    }
+                    catch { }
+                    @Html.ValidationMessageFor(model => model.ADUser.Login, "", new { @class = "text-danger" })
+                }
+                else
+                {
+                    @Html.TextBoxFor(model => model.ADUser.Login, new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" })
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row pb-3">
+        @if (!ViewBag.IsShow && Model.ADUser.Id == null)
+        {
+            <div class="col-3">
+                <div class="form-group">
+                    <label class="col-form-label" for="ADUser.Password">@Html.DisplayNameFor(model => model.ADUser.Password) (Standardowo: @ViewBag.DefaultPassword)</label>
+                    @Html.TextBoxFor(model => model.ADUser.Password, new { @class = "form-control", @disabled = "disabled", @readonly = "readonly", value="********" })
+                    @try
+                    {
+                        <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "ADUser" && x.FieldName == "Password").FirstOrDefault()?.FieldHelperText</div>
+                    }
+                    catch { }
+                </div>
+            </div>
+        }
+        <div class="col-3">
+            <div class="form-group">
+                <label class="col-form-label" for="ADUser.AccountExpirationDate">@Html.DisplayNameFor(model => model.ADUser.AccountExpirationDate)</label>
+
+                @if (!ViewBag.IsShow)
+                {
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            @Html.TextBoxFor(model => model.ADUser.AccountExpirationDateCheck, new { @type = "checkbox" })
+                        </span>
+                        @Html.TextBoxFor(model => model.ADUser.AccountExpirationDate, new { @class = "form-control", placeholder = "Bezterminowo" })
+                    </div>
+                    try
+                    {
+                        <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "ADUser" && x.FieldName == "AccountExpirationDate").FirstOrDefault()?.FieldHelperText</div>
+                    }
+                    catch { }
+                }
+                else
+                {
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            @Html.TextBoxFor(model => model.ADUser.AccountExpirationDateCheck, new { @type = "checkbox", @disabled = "disabled", @readonly = "readonly"})
+                        </span>
+                        @Html.TextBoxFor(model => model.ADUser.AccountExpirationDate, new { @class = "form-control", @disabled = "disabled", @readonly = "readonly", placeholder = "Bezterminowo" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row pb-3">
+        <div class="col">
+            <div class="col">
+                <div class="form-group">
+                    <div class="input-group">
+                        @if (!ViewBag.IsShow)
+                        {
+                            <span class="input-group-text" style="background-color: transparent; border-color: transparent;">
+                                @Html.CheckBoxFor(model => model.ADUser.Enabled, new { @type = "checkbox" })
+                            </span>
+                            <label class="col-form-label" for="ADUser.Enabled">@Html.DisplayNameFor(model => model.ADUser.Enabled) </label>
+                            try
+                            {
+                                <div class="col-form-label" style="margin-left: 10px;">(@Model.HelperTexts.Where(x => x.Entity == "ADUser" && x.FieldName == "Enabled").FirstOrDefault()?.FieldHelperText)</div>
+                            }
+                            catch { }
+                        }
+                        else
+                        {
+                            <span class="input-group-text" style="background-color: transparent; border-color: transparent;">
+                                @Html.CheckBoxFor(model => model.ADUser.Enabled, new { @type = "checkbox", @readonly = "readonly", @disabled = "disabled" })
+                            </span>
+                            <label class="col-form-label" for="ADUser.Enabled">@Html.DisplayNameFor(model => model.ADUser.Enabled)</label>
+                        }
+                    </div>
+                    <div class="input-group">
+                        @if (!ViewBag.IsShow)
+                        {
+                            <span class="input-group-text" style="background-color: transparent; border-color: transparent;">
+                                @Html.CheckBoxFor(model => model.ADUser.PasswordNeverExpires, new { @type = "checkbox" })
+                            </span>
+                            <label class="col-form-label" for="ADUser.PasswordNeverExpires">@Html.DisplayNameFor(model => model.ADUser.PasswordNeverExpires)</label>
+                            try
+                            {
+                                <div class="col-form-label" style="margin-left: 10px;">(@Model.HelperTexts.Where(x => x.Entity == "ADUser" && x.FieldName == "PasswordNeverExpires").FirstOrDefault()?.FieldHelperText)</div>
+                            }
+                            catch { }
+                        }
+                        else
+                        {
+                            <span class="input-group-text" style="background-color: transparent; border-color: transparent;">
+                                @Html.CheckBoxFor(model => model.ADUser.PasswordNeverExpires, new { @type = "checkbox", @readonly = "readonly", @disabled = "disabled" })
+                            </span>
+                            <label class="col-form-label" for="ADUser.PasswordNeverExpires">@Html.DisplayNameFor(model => model.ADUser.PasswordNeverExpires)</label>
+                        }
+                    </div>
+                    <div class="input-group">
+                        @if (!ViewBag.IsShow)
+                        {
+                            <span class="input-group-text" style="background-color: transparent; border-color: transparent;">
+                                @Html.CheckBoxFor(model => model.ADUser.UserCannotChangePassword, new { @type = "checkbox" })
+                            </span>
+                            <label class="col-form-label" for="ADUser.UserCannotChangePassword">@Html.DisplayNameFor(model => model.ADUser.UserCannotChangePassword)</label>
+                            try
+                            {
+                                <div class="col-form-label" style="margin-left: 10px;">(@Model.HelperTexts.Where(x => x.Entity == "ADUser" && x.FieldName == "UserCannotChangePassword").FirstOrDefault()?.FieldHelperText)</div>
+                            }
+                            catch { }
+                        }
+                        else
+                        {
+                            <span class="input-group-text" style="background-color: transparent; border-color: transparent;">
+                                @Html.CheckBoxFor(model => model.ADUser.UserCannotChangePassword, new { @type = "checkbox", @readonly = "readonly", @disabled = "disabled" })
+                            </span>
+                            <label class="col-form-label" for="ADUser.UserCannotChangePassword">@Html.DisplayNameFor(model => model.ADUser.UserCannotChangePassword)</label>
+                        }
+                    </div>
+                    <div class="input-group mb-3">
+                        @if (!ViewBag.IsShow)
+                        {
+                            <span class="input-group-text" style="background-color: transparent; border-color: transparent;">
+                                @Html.CheckBoxFor(model => model.ADUser.UserMustChangePassword, new { @type = "checkbox" })
+                            </span>
+                            <label class="col-form-label" for="ADUser.UserMustChangePassword">@Html.DisplayNameFor(model => model.ADUser.UserMustChangePassword)</label>
+                            try
+                            {
+                                <div class="col-form-label" style="margin-left: 10px;">(@Model.HelperTexts.Where(x => x.Entity == "ADUser" && x.FieldName == "UserMustChangePassword").FirstOrDefault()?.FieldHelperText)</div>
+                            }
+                            catch { }
+                        }
+                        else
+                        {
+                            <span class="input-group-text" style="background-color: transparent; border-color: transparent;">
+                                @Html.CheckBoxFor(model => model.ADUser.UserMustChangePassword, new { @type = "checkbox", @readonly = "readonly", @disabled = "disabled" })
+                            </span>
+                            <label class="col-form-label" for="ADUser.UserMustChangePassword">@Html.DisplayNameFor(model => model.ADUser.UserMustChangePassword)</label>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pb-3">
+        <div class="col-3">
+            <div class="form-group">
+                <label class="col-form-label" for="ADUser.Mobile">@Html.DisplayNameFor(model => model.ADUser.Mobile)</label>
+                @if (!ViewBag.IsShow)
+                {
+                    @Html.TextBoxFor(model => model.ADUser.Mobile, new { @class = "form-control" })
+                    try
+                    {
+                        <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "ADUser" && x.FieldName == "Mobile").FirstOrDefault()?.FieldHelperText</div>
+                    }
+                    catch { }
+                    @Html.ValidationMessageFor(model => model.ADUser.Mobile, "", new { @class = "text-danger" })
+                }
+                else
+                {
+                    @Html.TextBoxFor(model => model.ADUser.Mobile, new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" })
+                }
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                <label class="col-form-label" for="ADUser.DepartmentMobile">@Html.DisplayNameFor(model => model.ADUser.DepartmentMobile)</label>
+                @if (!ViewBag.IsShow)
+                {
+                    @Html.TextBoxFor(model => model.ADUser.DepartmentMobile, new { @class = "form-control" })
+                    try
+                    {
+                        <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "ADUser" && x.FieldName == "DepartmentMobile").FirstOrDefault()?.FieldHelperText</div>
+                    }
+                    catch { }
+                    @Html.ValidationMessageFor(model => model.ADUser.DepartmentMobile, "", new { @class = "text-danger" })
+                }
+                else
+                {
+                    @Html.TextBoxFor(model => model.ADUser.DepartmentMobile, new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" })
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row pb-3">
+        <div class="col-3">
+            <div class="form-group">
+                <label class="col-form-label" for="ADUser.Address.Country">@Html.DisplayNameFor(model => model.ADUser.Address.Country)</label>
+                @if (!ViewBag.IsShow)
+                {
+                    @Html.DropDownListFor(model => model.ADUser.Address.Country, new SelectList(countries), new { @class = "form-control" })
+                    try
+                    {
+                        <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "Address" && x.FieldName == "Country").FirstOrDefault()?.FieldHelperText</div>
+                    }
+                    catch { }
+                }
+                else
+                {
+                    @Html.EditorFor(model => model.ADUser.Address.Country, new { htmlAttributes =  new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" } })
+                }
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                <label class="col-form-label" for="ADUser.Address.City">@Html.DisplayNameFor(model => model.ADUser.Address.City)</label>
+                @if (!ViewBag.IsShow)
+                {
+                    @Html.DropDownListFor(model => model.ADUser.Address.City, new SelectList(new List<string>{ Model.ADUser.Address.City ?? "" }), new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" })
+                    try
+                    {
+                        <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "Address" && x.FieldName == "City").FirstOrDefault()?.FieldHelperText</div>
+                    }
+                    catch { }
+                }
+                else
+                {
+                    @Html.EditorFor(model => model.ADUser.Address.City, new { htmlAttributes =  new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" } })
+                }
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                <label class="col-form-label" for="ADUser.Street">@Html.DisplayNameFor(model => model.ADUser.Address.Street)</label>
+                @if (!ViewBag.IsShow)
+                {
+                    @Html.DropDownListFor(model => model.ADUser.Address.Street, new SelectList(new List<string>{ Model.ADUser.Address.Street ?? "" }), new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" })
+                    try
+                    {
+                        <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "Address" && x.FieldName == "Street").FirstOrDefault()?.FieldHelperText</div>
+                    }
+                    catch { }
+                }
+                else
+                {
+                    @Html.EditorFor(model => model.ADUser.Address.Street, new { htmlAttributes =  new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" } })
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row pb-3">
+        <div class="col-3">
+            <div class="form-group">
+                <label class="col-form-label" for="ADUser.Company">@Html.DisplayNameFor(model => model.ADUser.Company)</label>
+                @if (!ViewBag.IsShow)
+                {
+                    @Html.EditorFor(model => model.ADUser.Company, new { htmlAttributes =  new { @class = "form-control" } })
+                    try
+                    {
+                        <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "ADUser" && x.FieldName == "Company").FirstOrDefault()?.FieldHelperText</div>
+                    }
+                    catch { }
+                    <button type="button" id="optima-fill" class="btn btn-link">Załaduj informacje stanowiskowe z Optimy</button>
+                }
+                else
+                {
+                    @Html.EditorFor(model => model.ADUser.Company, new { htmlAttributes =  new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" } })
+                }
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                <label class="col-form-label" for="ADUser.Department">@Html.DisplayNameFor(model => model.ADUser.Department)</label>
+                @if (!ViewBag.IsShow)
+                {
+                    @Html.EditorFor(model => model.ADUser.Department, new { htmlAttributes =  new { @class = "form-control" } })
+                    try
+                    {
+                        <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "ADUser" && x.FieldName == "Department").FirstOrDefault()?.FieldHelperText</div>
+                    }
+                    catch { }
+                }
+                else
+                {
+                    @Html.EditorFor(model => model.ADUser.Department, new { htmlAttributes =  new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" } })
+                }
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                <label class="col-form-label" for="ADUser.JobTitle">@Html.DisplayNameFor(model => model.ADUser.JobTitle)</label>
+                @if (!ViewBag.IsShow)
+                {
+                    @Html.EditorFor(model => model.ADUser.JobTitle, new { htmlAttributes =  new { @class = "form-control" } })
+                    try
+                    {
+                        <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "ADUser" && x.FieldName == "JobTitle").FirstOrDefault()?.FieldHelperText</div>
+                    }
+                    catch { }
+                }
+                else
+                {
+                    @Html.EditorFor(model => model.ADUser.JobTitle, new { htmlAttributes =  new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" } })
+                }
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-group">
+                <label class="col-form-label" for="ADUser.Manager">@Html.DisplayNameFor(model => model.ADUser.Manager)</label>
+                @if (!ViewBag.IsShow)
+                {
+                    @Html.DropDownListFor(model => model.ADUser.Manager, new SelectList(ViewBag.logins), new { @class = "form-control" })
+                    try
+                    {
+                        <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "ADUser" && x.FieldName == "Manager").FirstOrDefault()?.FieldHelperText</div>
+                    }
+                    catch { }
+                }
+                else
+                {
+                    @Html.EditorFor(model => model.ADUser.Manager, new { htmlAttributes =  new { @class = "form-control", @disabled = "disabled", @readonly = "readonly" } })
+                }
+            </div>
+        </div>
+    </div>
+    <div class="float-end">
+        <button type="button" class="mb-1 mt-1 me-1 btn btn-secondary btn-lg btn-block" style="width: 200px" onclick="window.history.back()">
+            Wróć
+        </button>
+
+
+        @if (!ViewBag.IsShow)
+        {
+            <button type="submit" class="mb-1 mt-1 me-1 btn btn-primary btn-lg btn-block" style="width: 200px" value="Submit">Zapisz</button>
+        }
+    </div>
+}
+
+@section Scripts {
+    <script src="~/js/Staff/ad.createuser.js"></script>
+}

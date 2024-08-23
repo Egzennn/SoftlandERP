@@ -1,0 +1,51 @@
+﻿@{
+    var displayName = string.Empty;
+    var jobTitle = string.Empty;
+
+    try
+    {
+        using var context = new PrincipalContext(ContextType.Domain);
+        using var user = UserPrincipal.FindByIdentity(context, User?.Identity?.Name);
+
+        displayName = user.DisplayName;
+        jobTitle = string.Empty;
+
+        if (user?.GetUnderlyingObjectType() == typeof(DirectoryEntry))
+        {
+            using var entry = (DirectoryEntry?)user?.GetUnderlyingObject();
+            jobTitle = entry?.Properties["title"]?.Value?.ToString() ?? string.Empty;
+        }
+    }
+    catch
+    {
+        displayName = User?.Identity?.Name;
+        jobTitle = "Developer";
+    }
+}
+
+<header class="header">
+    <div class="logo-container">
+        <a href="/" class="logo">
+            <img src="~/img/logo.png" width="75" height="35" alt="" />
+        </a>
+
+        <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+            <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+        </div>
+    </div>
+
+    <div class="header-right">
+       <div id="userbox" class="userbox">
+            <a id="iconToggleBtn">
+                <i class="fa-solid fa-sun fa-xl" style="color: #ffffff;"></i>
+            </a>
+            <figure class="profile-picture">
+                <img src="~/img/user.png" class="rounded-circle" />
+            </figure>
+            <div class="profile-info">
+                <span class="name">@displayName</span>
+                <span class="role">@jobTitle</span>
+            </div>
+        </div>
+    </div>
+</header>

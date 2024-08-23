@@ -1,0 +1,56 @@
+﻿@model ApplicationPermissionRuleCreateModel
+
+
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="modal-title">@ViewBag.ModalTitle</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+@using (Html.BeginForm("Create", "GeneralApplicationPermissionsRule", FormMethod.Post))
+{
+    <div class="modal-body">
+        <blockquote class="danger">
+            <div class="form-group">
+                <label class="col-form-label" for="ApplicationPermissionRule.Module">@Html.DisplayNameFor(model => model.ApplicationPermissionRule.Module)</label>
+                @Html.DropDownListFor(model => model.ApplicationPermissionRule.Module, new SelectList(Model.Modules), new { @class = "form-control" })
+                @try
+                {
+                    <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "ApplicationPermissionsRule" && x.FieldName == "Module").FirstOrDefault()?.FieldHelperText</div>
+                }
+                catch { }
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="ApplicationPermissionRule.ADGroupDisplayName">@Html.DisplayNameFor(model => model.ApplicationPermissionRule.ADGroupDisplayName)</label>
+                <div class="row">
+                    <div class="col-8">
+                        @Html.DropDownListFor(model => model.ApplicationPermissionRule.ADGroupDisplayName, new SelectList(Model.Groups), new { @class = "form-control" })
+                        @try
+                        {
+                            <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "ApplicationPermissionsRule" && x.FieldName == "ADGroupDisplayName").FirstOrDefault()?.FieldHelperText</div>
+                        }
+                        catch { }
+                    </div>
+                    <div class="col-4">
+                        <div class="input-group">
+                            <span class="input-group-text" style="background-color: transparent; border-color: transparent;">
+                                @Html.CheckBoxFor(model => model.ApplicationPermissionRule.ManagerOnly)
+                            </span>
+
+                            <label class="col-form-label" for="ApplicationPermissionRule_ManagerOnly">@Html.DisplayNameFor(model => model.ApplicationPermissionRule.ManagerOnly)</label>
+                            @try
+                            {
+                                <div class="form-helper">@Model.HelperTexts.Where(x => x.Entity == "ApplicationPermissionsRule" && x.FieldName == "ManagerOnly").FirstOrDefault()?.FieldHelperText</div>
+                            }
+                            catch { }
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </blockquote>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odrzuć</button>
+        <button type="submit" class="btn btn-primary" value="Submit">Zapisz</button>
+    </div>
+}

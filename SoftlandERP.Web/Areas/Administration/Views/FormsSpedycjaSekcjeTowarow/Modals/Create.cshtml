@@ -1,0 +1,39 @@
+﻿@model SpedycjaSekcjeTowarow
+
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="modal-title">@ViewBag.ModalTitle</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+@using (Html.BeginForm("Create", "FormsSpedycjaSekcjeTowarow", FormMethod.Post, new { @id = "createform", @autocomplete = "off" }))
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Created)
+    @Html.HiddenFor(model => model.CreatedBy)
+    <div class="modal-body">
+        <blockquote class="danger">
+            <div class="form-group">
+                <label class="col-form-label" for="Wartosc">@Html.DisplayNameFor(model => model.Wartosc)</label>
+                @Html.TextBoxFor(model => model.Wartosc, new { @class = "form-control", required="required" })
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="Odpowiedzialny">@Html.DisplayNameFor(model => model.Odpowiedzialny)</label>
+                @Html.DropDownListFor(model => model.Odpowiedzialny,ViewBag.Odpowiedzialny as SelectList, new { @class = "form-control"})
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="Stan">@Html.DisplayNameFor(model => model.Stan)</label>
+                @if (ViewBag.Stany != null)
+                {
+                    @Html.DropDownListFor(model => model.Stan, ViewBag.Stany as SelectList, new { @class = "form-control" })
+                }
+                else
+                {
+                    @Html.EditorFor(model => model.Stan, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @placeholder = "Plan" } })
+                }
+            </div>
+        </blockquote>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odrzuć</button>
+        <button type="submit" class="btn btn-primary" value="Submit">Zapisz</button>
+    </div>
+}

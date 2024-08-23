@@ -1,0 +1,52 @@
+﻿@model PermissionsViewModel
+
+<div class="row">
+    <div class="col">
+        <div class="toggle toggle-primary" data-plugin-toggle>
+            <section class="toggle">
+                <label>Formularze</label>
+                <div class="toggle-content">
+                    <ul>
+                        @foreach (var permission in Model.FormularzPermissions)
+                        {
+                            <li>@permission</li>
+                        }
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="col">
+        <div class="toggle toggle-primary" data-plugin-toggle>
+            <section class="toggle">
+                <label>Słowniki</label>
+                <div class="toggle-content">
+                    <ul>
+                        @foreach (var permission in Model.SlownikPermissions)
+                        {
+                            <li>@permission</li>
+                        }
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="col">
+        <div class="col">
+            <div class="toggle toggle-primary" data-plugin-toggle>
+
+                <section class="toggle">
+                    <label>Inne</label>
+                    <div class="toggle-content">
+                        <ul>
+                            @foreach (var permission in Model.InnePermissions)
+                            {
+                                <li>@permission</li>
+                            }
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
